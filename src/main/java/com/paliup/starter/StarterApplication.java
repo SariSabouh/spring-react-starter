@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RayakApplication {
+public class StarterApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RayakApplication.class, args);
+		SpringApplication.run(StarterApplication.class, args);
 	}
 
 }
