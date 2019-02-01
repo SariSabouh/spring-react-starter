@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.paliup</groupId>
-	<artifactId>rayak</artifactId>
+	<artifactId>start</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>rayak</name>
-	<description>Find Your Favorite Spot In Palestine!</description>
+	<name>starter</name>
+	<description>This is a starter project</description>
 
 	<properties>
 		<java.version>1.8</java.version>

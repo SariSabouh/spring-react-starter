@@ -1,4 +1,4 @@
-package com.paliup.rayak;
+package com.paliup.starter;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

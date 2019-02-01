@@ -1,4 +1,4 @@
-package com.paliup.rayak;
+package com.paliup.starter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
