@@ -8,7 +8,7 @@ import Header from '../header/Header'
 class App extends Component {
     render() {
         return (
-            <div className="App">
+            <div className="t-app">
                 <Header />
                 <Dashboard />
             </div>
