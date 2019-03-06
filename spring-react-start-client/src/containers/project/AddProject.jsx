@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
+
+import {createProject} from './actions'
 
 class AddProject extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
 
         this.state = {
             projectName: '',
@@ -21,9 +25,11 @@ class AddProject extends Component {
     }
 
     onSubmit(e) {
+        const {createProject, history} = this.props
+
         e.preventDefault()
         const newProject = {...this.state}
-        console.log(newProject);
+        createProject(newProject, history)
     }
 
     render() {
@@ -66,4 +72,17 @@ class AddProject extends Component {
     }
 }
 
-export default AddProject
+AddProject.propTypes = {
+    createProject: PropTypes.func.isRequired
+}
+
+// const mapStateToProps = createPropsSelector({
+//     locale: getLocale,
+//     messages: getMessages
+// })
+
+const mapDispatchToProps = {
+    createProject
+}
+
+export default connect(null, mapDispatchToProps)(AddProject)
