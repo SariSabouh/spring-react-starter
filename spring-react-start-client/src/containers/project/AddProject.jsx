@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
+import {createPropsSelector} from 'reselect-immutable-helpers'
 
 import {createProject} from './actions'
+import {getProjectErrors} from './selectors'
 
 class AddProject extends Component {
     constructor(props) {
@@ -34,6 +36,7 @@ class AddProject extends Component {
 
     render() {
         const {projectName, projectIdentifier, description, start_date, end_date} = this.state
+        const {projectErrors} = this.props
         return (
             <div className="t-add-project">
                 <div className="container">
@@ -73,16 +76,16 @@ class AddProject extends Component {
 }
 
 AddProject.propTypes = {
-    createProject: PropTypes.func.isRequired
+    createProject: PropTypes.func.isRequired,
+    projectErrors: PropTypes.object
 }
 
-// const mapStateToProps = createPropsSelector({
-//     locale: getLocale,
-//     messages: getMessages
-// })
+const mapStateToProps = createPropsSelector({
+    projectErrors: getProjectErrors
+})
 
 const mapDispatchToProps = {
     createProject
 }
 
-export default connect(null, mapDispatchToProps)(AddProject)
+export default connect(mapStateToProps, mapDispatchToProps)(AddProject)
