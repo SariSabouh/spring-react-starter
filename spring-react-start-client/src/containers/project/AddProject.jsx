@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import template from '../../template'
-import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {createPropsSelector} from 'reselect-immutable-helpers'
 import {reduxForm} from 'redux-form'
+import {connect} from 'react-redux'
+import {createPropsSelector} from 'reselect-immutable-helpers'
+import template from '../../template'
 
 import {ADD_PROJECT_FORM} from '../../store/form/constants'
 

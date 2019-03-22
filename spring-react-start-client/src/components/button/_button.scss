@@ -1,0 +1,217 @@
+// Button theme
+// ===
+// 1. Display is set differently for buttons vs. anchors due to an issue with
+//    "replaced elements". See here for more details:
+//    http://stackoverflow.com/questions/19679337/why-are-not-all-flexbox-elements-behaving-like-flexbox-divs
+
+.c-button {
+    display: inline-table; // 1
+    min-width: $tap-size;
+    min-height: $tap-size;
+    padding: $unit;
+    border: 0;
+
+    background-color: transparent;
+
+    background: transparent;
+
+    text-align: center;
+
+    transition: transparent 0.5s ease-in;
+
+    -webkit-appearance: none;
+
+    &:active,
+    &:focus {
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    &::after,
+    &::before {
+        border-top: 1px solid $neutral-30;
+    }
+
+    &.c--anchor {
+        display: inline-flex; // 1
+        justify-content: center;
+    }
+}
+
+// Inner
+// ---
+
+.c-button__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+// Icon
+// ---
+
+.c-button__icon {
+    flex: 0 0 auto;
+}
+
+
+// Themes: Primary
+// ---
+
+.c-button.c--primary {
+    padding: $unit*1.5;
+
+    background: $primary-action-color;
+
+    color: $neutral-10;
+    font-weight: bold;
+
+    &:active,
+    &:focus {
+        background: $dark-primary-action-color;
+
+        color: $neutral-10;
+    }
+}
+
+
+// Themes: Secondary
+// ---
+
+.c-button.c--secondary {
+    padding: $unit*1.5;
+
+    background: $secondary-action-color;
+
+    color: $neutral-10;
+    font-weight: bold;
+
+    &:active,
+    &:focus {
+        background: $dark-secondary-action-color;
+
+        color: $neutral-10;
+    }
+}
+
+
+// Themes: Tertiary
+// ---
+
+.c-button.c--tertiary {
+    padding: $unit*1.5;
+    border: $border;
+
+    background: $neutral-10;
+
+    color: $secondary-brand-color;
+    font-weight: bold;
+
+    &:active,
+    &:focus {
+        background: $neutral-10;
+
+        color: $secondary-brand-color;
+    }
+}
+
+
+// Themes: Link
+// ---
+//
+// Allow button elements to resemble as an inline link element
+
+.c-button.c--link {
+    min-width: initial;
+    min-height: initial;
+    padding: 0;
+
+    background: none;
+
+    color: $link-color;
+    font-weight: normal;
+}
+
+
+// State: Disabled button
+// ---
+
+.c-button[disabled] {
+    .c-button__icon {
+        color: $tertiary-brand-color;
+    }
+}
+
+.c-button.c--primary,
+.c-button.c--secondary {
+    &[disabled] {
+        background: $disabled-button-background-color;
+    }
+}
+
+.c-button.c--tertiary[disabled] {
+    border-width: 0;
+
+    background: $disabled-button-background-color;
+}
+
+
+// State: Button icon has siblings
+// ---
+
+.c-button__icon.c--has-siblings {
+    margin-right: $sub-unit*3;
+}
+
+
+// Social Themes
+// ---
+
+// Facebook
+.c-button.c--facebook {
+    background: $facebook-color;
+
+    color: $neutral-10;
+}
+
+// Twitter
+.c-button.c--twitter {
+    background: $twitter-color;
+
+    color: $neutral-10;
+}
+
+// Instagram
+.c-button.c--instagram {
+    background: $instagram-color;
+
+    color: $neutral-10;
+}
+
+// Pinterest
+.c-button.c--pinterest {
+    background: $pinterest-color;
+
+    color: $neutral-10;
+}
+
+// Youtube
+.c-button.c--youtube {
+    background: $youtube-color;
+
+    color: $neutral-10;
+}
+
+// Google Plus
+.c-button.c--google-plus {
+    background: $google-plus-color;
+
+    color: $neutral-10;
+}
+
+// Yelp
+.c-button.c--yelp {
+    background: $yelp-color;
+
+    color: $neutral-10;
+}

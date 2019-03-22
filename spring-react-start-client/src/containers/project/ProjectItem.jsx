@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 
+import Button from '../../components/button'
 import {Link} from 'react-router-dom'
+
+import {deleteProject} from './actions'
 
 class ProjectItem extends Component {
     render() {
-        const {project} = this.props
+        const {project, deleteProject} = this.props
         return (
             <div className="t-project-item container">
                 <div className="card card-body bg-light mb-3">
@@ -29,11 +33,11 @@ class ProjectItem extends Component {
                                         <i className="fa fa-edit pr-1">Update Project Info</i>
                                     </li>
                                 </Link>
-                                <Link to="/#">
+                                <Button onClick={() => deleteProject(project.projectIdentifier)}>
                                     <li className="list-group-item delete">
                                         <i className="fa fa-minus-circle pr-1">Delete Project</i>
                                     </li>
-                                </Link>
+                                </Button>
                             </ul>
                         </div>
                     </div>
@@ -44,7 +48,12 @@ class ProjectItem extends Component {
 }
 
 ProjectItem.propTypes = {
+    deleteProject: PropTypes.func,
     project: PropTypes.object
 }
 
-export default ProjectItem
+const mapDispatchToProps = {
+    deleteProject
+}
+
+export default connect(null, mapDispatchToProps)(ProjectItem)

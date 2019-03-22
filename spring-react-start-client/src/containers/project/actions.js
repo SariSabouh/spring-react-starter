@@ -2,7 +2,7 @@ import axios from 'axios'
 import {createAction} from 'redux-actions'
 import {SubmissionError} from 'redux-form'
 
-import {getProject} from '../../store/project/actions'
+import {getProject, getProjects} from '../../store/project/actions'
 
 export const setCurrentProject = createAction('Receive Current Project')
 
@@ -24,4 +24,9 @@ export const createProject = (formValues, history) => (dispatch) => {
         .catch((err) => {
             return Promise.reject(new SubmissionError({...err.response.data}))
         })
+}
+
+export const deleteProject = (id) => (dispatch) => {
+    return axios.delete(`http://localhost:8080/api/project/${id}`)
+        .then(() => dispatch(getProjects()))
 }
