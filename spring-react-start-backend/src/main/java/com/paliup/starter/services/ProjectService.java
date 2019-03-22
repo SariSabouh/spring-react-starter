@@ -3,8 +3,10 @@ package com.paliup.starter.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.paliup.starter.domain.Backlog;
 import com.paliup.starter.domain.Project;
 import com.paliup.starter.exceptions.ProjectIdException;
+import com.paliup.starter.repositories.BacklogRepository;
 import com.paliup.starter.repositories.ProjectRepository;
 
 @Service
@@ -13,12 +15,26 @@ public class ProjectService {
 	@Autowired
 	private ProjectRepository projectRepository;
 	
+	@Autowired
+	private BacklogRepository backlogRepository;
+	
 	public Project saveOrUpdateProject(Project project) {
+		String projectIdentifier = project.getProjectIdentifier().toUpperCase();
 		try {
-			project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
+			project.setProjectIdentifier(projectIdentifier);
+
+			if (project.getId() == null) {
+				Backlog backlog = new Backlog();
+				project.setBacklog(backlog);
+				backlog.setProject(project);
+				backlog.setProjectIdentifier(projectIdentifier);
+			} else {
+				project.setBacklog(backlogRepository.findByProjectIdentifier(projectIdentifier));
+			}
+
 			return projectRepository.save(project);
 		} catch (Exception e) {
-			throw new ProjectIdException("Project ID '" + project.getProjectIdentifier().toUpperCase() + "' already exists");
+			throw new ProjectIdException("Project ID '" + projectIdentifier + "' already exists");
 		}
 	}
 	
