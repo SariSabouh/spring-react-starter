@@ -6,9 +6,12 @@ import {getProject} from '../../store/project/actions'
 
 export const setCurrentProject = createAction('Receive Current Project')
 
-export const initAddProject = (urlProps) => (dispatch) => {
-    urlProps.params.id && dispatch(getProject(urlProps.params.id))
-                            .then((project) => dispatch(setCurrentProject({currentProject: project})))
+export const initAddProject = (routeProps) => (dispatch) => {
+    const {match, history} = routeProps
+    match.params.id &&
+        dispatch(getProject(match.params.id))
+            .then((project) => dispatch(setCurrentProject({currentProject: project})))
+            .catch((e) => history.push('/dashboard'))
     return Promise.resolve()
 }
 
