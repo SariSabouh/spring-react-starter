@@ -19,7 +19,7 @@ export const createProject = (formValues, history) => (dispatch) => {
     if (!Object.keys(formValues).length) {
         return Promise.reject(new SubmissionError({_error: 'Please fill form'}))
     }
-    return axios.post('http://localhost:8080/api/project', formValues)
+    return axios.post('/api/project', formValues)
         .then(() => history.push('/dashboard'))
         .catch((err) => {
             return Promise.reject(new SubmissionError({...err.response.data}))
@@ -27,6 +27,6 @@ export const createProject = (formValues, history) => (dispatch) => {
 }
 
 export const deleteProject = (id) => (dispatch) => {
-    return axios.delete(`http://localhost:8080/api/project/${id}`)
+    return axios.delete(`/api/project/${id}`)
         .then(() => dispatch(getProjects()))
 }
