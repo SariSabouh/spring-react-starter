@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
+import template from '../../template'
+import {connect} from 'react-redux'
+import {createPropsSelector} from 'reselect-immutable-helpers'
+import PropTypes from 'prop-types'
 
 import ProjectItem from '../project/ProjectItem'
 import CreateProjectButton from '../project/CreateProjectButton'
 
+import {getProjectsList} from '../../store/project/selectors'
+
 class Dashboard extends Component {
     render() {
+        const {projects} = this.props
         return (
             <div className="t-dashboard projects">
                 <div className="container">
@@ -15,7 +22,7 @@ class Dashboard extends Component {
                             <CreateProjectButton />
                             <br />
                             <hr />
-                            <ProjectItem />
+                            {projects.map((project, idx) => <ProjectItem key={idx} project={project} />)}
                         </div>
                     </div>
                 </div>
@@ -24,4 +31,12 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard
+Dashboard.propTypes = {
+    projects: PropTypes.array
+}
+
+const mapStateToProps = createPropsSelector({
+    projects: getProjectsList
+})
+
+export default template(connect(mapStateToProps)(Dashboard))

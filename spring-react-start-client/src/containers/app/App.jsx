@@ -1,29 +1,31 @@
 import React, { Component } from 'react'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
-import {Provider} from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import Dashboard from '../dashboard/Dashboard'
 import Header from '../header/Header'
-import AddProject from '../project/AddProject'
 
 class App extends Component {
+    componentDidUpdate(prevProps) {
+        console.log(prevProps)
+    }
+
     render() {
-        const {store} = this.props
         return (
-            <Provider store={store}>
-                <Router>
-                    <div className="t-app">
-                        <Header />
-                        <Route path="/dashboard" component={Dashboard} />
-                        <Route exact path="/addProject" component={AddProject} />
-                    </div>
-                </Router>
-            </Provider>
+            <div className="t-app">
+                <Header />
+                <main id="app-main" className="c-app__main u-flex" role="main">
+                    {this.props.children}
+                </main>
+            </div>
         );
     }
 }
 
-export default App;
+App.propTypes = {
+    children: PropTypes.array.isRequired,
+}
+
+export default withRouter(App);

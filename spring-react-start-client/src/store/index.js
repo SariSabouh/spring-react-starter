@@ -1,10 +1,15 @@
 import {createStore, applyMiddleware, compose, combineReducers} from 'redux'
 import Immutable from 'immutable'
 import thunk from 'redux-thunk'
+import {reducer as formReducer} from 'redux-form'
+
 import rootReducer from '../containers/reducers'
+import projectReducer from './project/reducer'
 
 const reducers = combineReducers({
-    ui: rootReducer
+    ui: rootReducer,
+    project: projectReducer,
+    form: formReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
