@@ -2,41 +2,28 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {createPropsSelector} from 'reselect-immutable-helpers'
+import {reduxForm} from 'redux-form'
+
+import {ADD_PROJECT_FORM} from '../../store/form/constants'
+
+import FormField from '../../components/form-field'
 
 import {createProject} from './actions'
-import {getProjectErrors} from './selectors'
 
 class AddProject extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            projectName: '',
-            projectIdentifier: '',
-            description: '',
-            start_date: '',
-            end_date: ''
-        }
-
-        this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
     }
 
-    onChange(e) {
-        this.setState({[e.target.name]: e.target.value})
-    }
-
-    onSubmit(e) {
-        const {createProject, history} = this.props
-
-        e.preventDefault()
-        const newProject = {...this.state}
-        createProject(newProject, history)
+    onSubmit(formValues) {
+        const {history, createProject} = this.props
+        return createProject(formValues, history)
     }
 
     render() {
-        const {projectName, projectIdentifier, description, start_date, end_date} = this.state
-        const {projectErrors} = this.props
+        const {error, handleSubmit} = this.props
         return (
             <div className="t-add-project">
                 <div className="container">
@@ -44,28 +31,29 @@ class AddProject extends Component {
                         <div className="col-md-8 m-auto">
                             <h5 className="display-4 text-center">Create Project form</h5>
                             <hr />
-                            <form onSubmit={this.onSubmit}>
+                            <form id={ADD_PROJECT_FORM} onSubmit={handleSubmit(this.onSubmit)} noValidate={true}>
+                                {error &&
+                                    <div className="u-margin-start-md u-margin-bottom-md u-color-error">
+                                        {error}
+                                    </div>
+                                }
                                 <div className="form-group">
-                                    <input type="text" className="form-control form-control-lg " placeholder="Project Name"
-                                        name="projectName" value={projectName} onChange={this.onChange} />
+                                    <FormField type="text" placeholder="Project Name Placeholder" label="Project Name Label" name="projectName" />
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-control form-control-lg" placeholder="Unique Project ID"
-                                        name="projectIdentifier" value={projectIdentifier} onChange={this.onChange} />
+                                    <FormField type="text" placeholder="Project Identifier Placeholder" label="Project Identifier Label" name="projectIdentifier" />
                                 </div>
                                 <div className="form-group">
-                                    <textarea className="form-control form-control-lg" placeholder="Project Description" name="description" value={description} onChange={this.onChange} />
+                                    <FormField type="textarea" placeholder="Project Description Placeholder" label="Project Description Label" name="description" />
                                 </div>
-                                <h6>Start Date</h6>
                                 <div className="form-group">
-                                    <input type="date" className="form-control form-control-lg" name="start_date" value={start_date} onChange={this.onChange} />
+                                    <FormField type="date" placeholder="Start Date Placeholder" label="Start Date Label" name="start_date" />
                                 </div>
-                                <h6>Estimated End Date</h6>
                                 <div className="form-group">
-                                    <input type="date" className="form-control form-control-lg" name="end_date" value={end_date} onChange={this.onChange} />
+                                    <FormField type="date" placeholder="End Date Placeholder" label="End Date Label" name="end_date" />
                                 </div>
 
-                                <input type="submit" className="btn btn-primary btn-block mt-4" />
+                                <button type="submit" className="btn btn-primary btn-block mt-4">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -77,15 +65,18 @@ class AddProject extends Component {
 
 AddProject.propTypes = {
     createProject: PropTypes.func.isRequired,
-    projectErrors: PropTypes.object
+    error: PropTypes.string,
+    handleSubmit: PropTypes.func,
 }
 
-const mapStateToProps = createPropsSelector({
-    projectErrors: getProjectErrors
-})
+const AddProjectForm = reduxForm({
+    form: ADD_PROJECT_FORM
+})(AddProject)
+
+const mapStateToProps = createPropsSelector({})
 
 const mapDispatchToProps = {
     createProject
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddProject)
+export default connect(mapStateToProps, mapDispatchToProps)(AddProjectForm)

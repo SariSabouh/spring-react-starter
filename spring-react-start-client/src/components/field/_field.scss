@@ -1,0 +1,176 @@
+// Field
+// ===
+//
+// Field is a wrapper for form fields. It is responsible for control the size
+// and spacing of the form field itself, its label, and the optional text label.
+// The field component is also responsible for apply states, such as errors.
+
+$field__error-color: red;
+
+
+.c-field {
+    flex: 1 1 auto;
+}
+
+
+// Field Inner
+// ---
+
+.c-field__inner {
+    display: flex;
+
+    &.c--stack {
+        flex-flow: column;
+    }
+}
+
+// Field: Input
+// ---
+//
+// This container is for the actual form inputs itself. It is required in order
+// to achieve the necessary layout inside of the parent `.c-field__inner` wrap.
+
+.c-field__input {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+
+// Field: Label
+// ---
+//
+// This container is for the input label. Click on this should select it's
+// respective input.
+
+.c-field__label {
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+
+// Label Wrap
+// ---
+//
+// 1. Position context so the child `c-field__hint` can be absolutely positioned
+
+.c-field__label-wrap {
+    position: relative; // 1
+
+    flex: 0 1 auto;
+
+    display: flex;
+    align-items: baseline;
+
+    &:not(.c--end) {
+        margin-bottom: $unit;
+    }
+
+    &.c--end {
+        margin-top: $sub-unit;
+        margin-left: $unit*1.5;
+    }
+
+    &.c--end {
+        order: 1;
+    }
+}
+
+
+// Field: Error
+// ---
+
+.c-field__error,
+%c-field__error {
+    margin-top: $sub-unit;
+
+    color: $error-color;
+    font-size: $small-font-size;
+    line-height: $small-line-height;
+}
+
+
+// Modifier: Check-radio field
+// ---
+
+.c-field.c--is-check-radio {
+    .c-field__input {
+        flex: 0 0 auto;
+    }
+
+    .c-field__label {
+        font-weight: normal;
+    }
+
+    .c-field__error,
+    .c-field__caption {
+        margin-left: $unit*4.5; // 1
+    }
+}
+
+
+// Modifier: Error Field
+// ---
+
+.c-field.c--error {
+    .c-field__label-wrap {
+        color: $field__error-color;
+    }
+
+    input,
+    select,
+    .c-field__input > * {
+        border-color: $error-color;
+
+        &:focus,
+        &:active {
+            border-color: $error-color;
+
+            box-shadow: 0 0 4px 0 $error-color;
+        }
+    }
+
+    .c-field__label {
+        color: $error-color;
+    }
+}
+
+
+// Modifier: Overlayed Hint
+// ---
+//
+// 1. Positioned relative to the parent `c-field__label-wrap` container
+// 2. Position the hint button to sit directly on top of the field input
+
+.c-field.c--overlayed-hint {
+    .c-field__hint {
+        position: absolute; // 1
+        top: 100%; // 2
+        right: 0; // 2
+    }
+}
+
+
+// Hint
+// ---
+
+.c-field__hint {
+    flex: 1 1 auto;
+    margin-left: $unit;
+
+    color: $neutral-50;
+    font-size: $small-font-size;
+    line-height: $small-line-height;
+    text-align: right;
+}
+
+
+// Caption
+// ---
+
+.c-field__caption {
+    margin-top: $sub-unit;
+
+    color: $neutral-50;
+    font-size: $small-font-size;
+    line-height: $small-line-height;
+}
