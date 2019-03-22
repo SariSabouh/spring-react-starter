@@ -27,6 +27,8 @@ export const createProject = (formValues, history) => (dispatch) => {
 }
 
 export const deleteProject = (id) => (dispatch) => {
-    return axios.delete(`/api/project/${id}`)
-        .then(() => dispatch(getProjects()))
+    if (window.confirm('Are you sure?')) { // TODO: Add modals
+        return axios.delete(`/api/project/${id}`)
+            .then(() => dispatch(getProjects()))
+    }
 }
