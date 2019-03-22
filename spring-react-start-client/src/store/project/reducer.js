@@ -1,12 +1,17 @@
 import {handleActions} from 'redux-actions'
-import Immutable from 'immutable'
+import {fromJS} from 'immutable'
 
-import {receiveProject} from './actions'
+import {receiveProjects, receiveProject} from './actions'
 
-const initialState = Immutable.Map()
+const initialState = fromJS({
+    projectsList: []
+})
 
 export default handleActions({
+    [receiveProjects]: (state, {payload}) => {
+        return state.merge(payload)
+    },
     [receiveProject]: (state, {payload}) => {
-        return state.mergeDeep(payload)
-    }
+        return state.update('projectsList', projectsList => projectsList.push({...payload}))
+    },
 }, initialState)

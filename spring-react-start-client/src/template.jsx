@@ -15,7 +15,7 @@ const template = (WrappedComponent) => {
 
         dispatchRouteChange({fetchAction, dispatch}) {
             if (fetchAction) {
-                dispatch(fetchAction())
+                dispatch(fetchAction(this.props.match))
             }
         }
 

@@ -2,7 +2,15 @@ import axios from 'axios'
 import {createAction} from 'redux-actions'
 import {SubmissionError} from 'redux-form'
 
-export const receiveErrors = createAction('Receive API Errors')
+import {getProject} from '../../store/project/actions'
+
+export const setCurrentProject = createAction('Receive Current Project')
+
+export const initAddProject = (urlProps) => (dispatch) => {
+    urlProps.params.id && dispatch(getProject(urlProps.params.id))
+                            .then((project) => dispatch(setCurrentProject({currentProject: project})))
+    return Promise.resolve()
+}
 
 export const createProject = (formValues, history) => (dispatch) => {
     if (!Object.keys(formValues).length) {

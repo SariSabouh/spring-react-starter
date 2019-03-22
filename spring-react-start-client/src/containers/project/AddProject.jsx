@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import template from '../../template'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {createPropsSelector} from 'reselect-immutable-helpers'
@@ -8,7 +9,8 @@ import {ADD_PROJECT_FORM} from '../../store/form/constants'
 
 import FormField from '../../components/form-field'
 
-import {createProject} from './actions'
+import {createProject, setCurrentProject} from './actions'
+import {getCurrentProject} from './selectors'
 
 class AddProject extends Component {
     constructor(props) {
@@ -17,13 +19,17 @@ class AddProject extends Component {
         this.onSubmit = this.onSubmit.bind(this)
     }
 
+    componentWillUnmount() {
+        this.props.setCurrentProject({currentProject: undefined})
+    }
+
     onSubmit(formValues) {
         const {history, createProject} = this.props
         return createProject(formValues, history)
     }
 
     render() {
-        const {error, handleSubmit} = this.props
+        const {error, handleSubmit, initialValues} = this.props
         return (
             <div className="t-add-project">
                 <div className="container">
@@ -41,7 +47,7 @@ class AddProject extends Component {
                                     <FormField type="text" placeholder="Project Name Placeholder" label="Project Name Label" name="projectName" />
                                 </div>
                                 <div className="form-group">
-                                    <FormField type="text" placeholder="Project Identifier Placeholder" label="Project Identifier Label" name="projectIdentifier" />
+                                    <FormField disabled={initialValues !== null} type="text" placeholder="Project Identifier Placeholder" label="Project Identifier Label" name="projectIdentifier" />
                                 </div>
                                 <div className="form-group">
                                     <FormField type="textarea" placeholder="Project Description Placeholder" label="Project Description Label" name="description" />
@@ -66,17 +72,22 @@ class AddProject extends Component {
 AddProject.propTypes = {
     createProject: PropTypes.func.isRequired,
     error: PropTypes.string,
+    initialValues: PropTypes.object,
     handleSubmit: PropTypes.func,
+    setCurrentProject: PropTypes.func
 }
 
 const AddProjectForm = reduxForm({
     form: ADD_PROJECT_FORM
 })(AddProject)
 
-const mapStateToProps = createPropsSelector({})
+const mapStateToProps = createPropsSelector({
+    initialValues: getCurrentProject
+})
 
 const mapDispatchToProps = {
-    createProject
+    createProject,
+    setCurrentProject
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddProjectForm)
+export default template(connect(mapStateToProps, mapDispatchToProps)(AddProjectForm))

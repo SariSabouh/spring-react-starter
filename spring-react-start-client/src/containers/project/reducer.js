@@ -1,12 +1,12 @@
 import {handleActions} from 'redux-actions'
 import Immutable from 'immutable'
 
-import {receiveErrors} from './actions'
+import {setCurrentProject} from './actions'
 
 const initialState = Immutable.Map()
 
 export default handleActions({
-    [receiveErrors]: (state, {payload}) => {
+    [setCurrentProject]: (state, {payload}) => {
         return state.mergeDeep(payload)
     }
 }, initialState)

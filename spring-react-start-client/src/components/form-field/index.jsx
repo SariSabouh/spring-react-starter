@@ -4,11 +4,12 @@ import {Field as ReduxFormField} from 'redux-form'
 
 import Field from '../field'
 
-const FormField = ({label, type, name, placeholder, classes, rowClasses, defaultChecked}) => {
+const FormField = ({label, type, name, placeholder, classes, rowClasses, defaultChecked, disabled}) => {
     const inputOptions = {
         type,
         placeholder,
-        defaultChecked
+        defaultChecked,
+        disabled
     }
 
     let inputField = <input {...inputOptions} className="form-control form-control-lg" />
