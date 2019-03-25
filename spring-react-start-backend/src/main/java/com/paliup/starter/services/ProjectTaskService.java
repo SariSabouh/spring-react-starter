@@ -1,5 +1,7 @@
 package com.paliup.starter.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -71,11 +73,20 @@ public class ProjectTaskService {
 	}
 	
 	public ProjectTask updateByProjectSequence(ProjectTask updatedTask, String backlogId, String sequenceId) {
-		ProjectTask projectTask = projectTaskRepository.findByProjectSequence(updatedTask.getProjectSequence());
-		
+		ProjectTask projectTask = findProjectTaskByProjectSequence(backlogId, sequenceId);
 		projectTask = updatedTask;
-		
 		return projectTaskRepository.save(projectTask);
+	}
+	
+	public void deleteProjectTaskByProjectSequence(String backlogId, String sequenceId) {
+		ProjectTask projectTask = findProjectTaskByProjectSequence(backlogId, sequenceId);
+		
+		Backlog backlog = projectTask.getBacklog();
+		List<ProjectTask> projectTasks = backlog.getProjectTasks();
+		projectTasks.remove(projectTask);
+		backlogRepository.save(backlog);
+
+		projectTaskRepository.delete(projectTask);
 	}
 
 }
