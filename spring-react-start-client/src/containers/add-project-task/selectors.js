@@ -3,5 +3,6 @@ import {createGetSelector} from 'reselect-immutable-helpers'
 
 import {getUi} from '../../store/selectors'
 
-export const getProject = createSelector(getUi, ({project}) => project)
-export const getCurrentProject = createGetSelector(getProject, 'currentProject')
+export const getProjectTask = createSelector(getUi, ({projectTask}) => projectTask)
+export const getCurrentProject = createGetSelector(getProjectTask, 'currentProject')
+export const getCurrentTask = createGetSelector(getProjectTask, 'currentTask')

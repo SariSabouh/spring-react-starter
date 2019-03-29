@@ -6,7 +6,7 @@ import {getProjectTasksById} from '../../store/project/actions'
 export const setCurrentTaskList = createAction('Receive Current Task List')
 export const receiveErrorMessage = createAction('Receive Error Message')
 
-const updateProductTasks = (id) => (dispatch) => {
+export const updateProductTasks = (id) => (dispatch) => {
     dispatch(receiveErrorMessage({projectNotFound: undefined}))
     return dispatch(getProjectTasksById(id))
         .then(({payload}) => dispatch(setCurrentTaskList(payload)))

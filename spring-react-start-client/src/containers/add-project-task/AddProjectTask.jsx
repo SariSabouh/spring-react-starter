@@ -11,7 +11,8 @@ import Button from '../../components/button'
 import {Link} from 'react-router-dom'
 import FormField from '../../components/form-field'
 
-import {addProjectTask} from './actions'
+import {addProjectTask, setCurrentTask} from './actions'
+import { getCurrentTask } from './selectors';
 
 class AddProjectTask extends Component {
     constructor(props) {
@@ -20,8 +21,13 @@ class AddProjectTask extends Component {
         this.onSubmit = this.onSubmit.bind(this)
     }
 
+    componentWillUnmount() {
+        this.props.setCurrentTask({currentTask: null})
+    }
+
     onSubmit(formValues) {
-        const {history, addProjectTask, match} = this.props
+        const {history, addProjectTask, match, initialValues} = this.props
+        formValues.isUpdate = initialValues !== null
         return addProjectTask(formValues, match.params.id, history)
     }
 
@@ -85,17 +91,22 @@ class AddProjectTask extends Component {
 AddProjectTask.propTypes = {
     addProjectTask: PropTypes.func,
     error: PropTypes.string,
-    handleSubmit: PropTypes.func
+    handleSubmit: PropTypes.func,
+    initialValues: PropTypes.object,
+    setCurrentTask: PropTypes.func
 }
 
 const AddProjectTaskForm = reduxForm({
     form: ADD_PROJECT_FORM_TASK
 })(AddProjectTask)
 
-const mapStateToProps = createPropsSelector({})
+const mapStateToProps = createPropsSelector({
+    initialValues: getCurrentTask
+})
 
 const mapDispatchToProps = {
-    addProjectTask
+    addProjectTask,
+    setCurrentTask
 }
 
 export default template(connect(mapStateToProps, mapDispatchToProps)(AddProjectTaskForm))

@@ -27,7 +27,7 @@ const ProjecTask = ({projectSequence, summary, acceptanceCriteria, priority, del
                 <div className="card-body bg-light">
                     <h5 className="card-title">{summary}</h5>
                     <p className="card-text text-truncate ">{acceptanceCriteria}</p>
-                    <Link to="#" className="btn btn-primary">View / Update</Link>
+                    <Link to={`/addProjectTask/${projectIdentifier}/${projectSequence}`} className="btn btn-primary">View / Update</Link>
                     <Button onClick={() => { deleteProject(projectIdentifier, projectSequence) }} className="btn btn-danger ml-4">Delete</Button>
                 </div>
             </div>

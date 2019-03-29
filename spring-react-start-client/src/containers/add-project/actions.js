@@ -2,7 +2,7 @@ import axios from 'axios'
 import {createAction} from 'redux-actions'
 import {SubmissionError} from 'redux-form'
 
-import {getProject, getProjects} from '../../store/project/actions'
+import {getProject} from '../../store/project/actions'
 
 export const setCurrentProject = createAction('Receive Current Project')
 

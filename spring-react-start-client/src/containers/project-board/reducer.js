@@ -1,9 +1,11 @@
 import {handleActions} from 'redux-actions'
-import Immutable from 'immutable'
+import {fromJS} from 'immutable'
 
 import {setCurrentTaskList, receiveErrorMessage} from './actions'
 
-const initialState = Immutable.Map()
+const initialState = fromJS({
+    tasksList: []
+})
 
 export default handleActions({
     [setCurrentTaskList]: (state, {payload}) => state.merge({tasksList: payload.tasksList}),
