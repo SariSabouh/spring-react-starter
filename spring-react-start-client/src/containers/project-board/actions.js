@@ -16,9 +16,9 @@ export const initProjectBoard = (routeProps) => (dispatch) => {
     return Promise.resolve()
 }
 
-// export const deleteProject = (id) => (dispatch) => {
-//     if (window.confirm('Are you sure?')) { // TODO: Add modals
-//         return axios.delete(`/api/project/${id}`)
-//             .then(() => dispatch(getProjects()))
-//     }
-// }
+export const deleteProject = (id) => (dispatch) => {
+    // if (window.confirm('Are you sure?')) { // TODO: Add modals
+    //     return axios.delete(`/api/project/${id}`)
+    //         .then(() => dispatch(getProjects()))
+    // }
+}

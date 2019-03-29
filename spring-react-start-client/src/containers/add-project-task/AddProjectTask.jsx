@@ -7,6 +7,7 @@ import template from '../../template'
 
 import { ADD_PROJECT_FORM_TASK } from '../../store/form/constants'
 
+import Button from '../../components/button'
 import {Link} from 'react-router-dom'
 import FormField from '../../components/form-field'
 
@@ -67,7 +68,7 @@ class AddProjectTask extends Component {
                                     </select>
                                 </div>
 
-                                <button type="submit" className="btn btn-primary btn-block mt-4">Submit</button>
+                                <Button type="submit" className="btn btn-primary btn-block mt-4">Submit</Button>
                             </form>
                         </div>
                     </div>

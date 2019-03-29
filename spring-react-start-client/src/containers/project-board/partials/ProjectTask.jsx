@@ -1,11 +1,13 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { createPropsSelector } from 'reselect-immutable-helpers'
+import React from 'react'
 import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 
-import { Link } from 'react-router-dom'
+import Button from '../../../components/button'
+import {Link} from 'react-router-dom'
 
-const ProjecTask = ({projectSequence, summary, acceptanceCriteria, priority}) => (
+import {deleteProject} from '../actions'
+
+const ProjecTask = ({projectSequence, summary, acceptanceCriteria, priority, deleteProject, projectIdentifier}) => (
     <div className="t-project-task">
         <div className="card mb-1 bg-light">
             <div className="card-header text-primary">ID: {projectSequence} -- Priority: {priority}</div>
@@ -13,19 +15,23 @@ const ProjecTask = ({projectSequence, summary, acceptanceCriteria, priority}) =>
                 <h5 className="card-title">{summary}</h5>
                 <p className="card-text text-truncate ">{acceptanceCriteria}</p>
                 <Link to="#" className="btn btn-primary">View / Update</Link>
-                <button className="btn btn-danger ml-4">Delete</button>
+                <Button onClick={() => { deleteProject(projectIdentifier) }} className="btn btn-danger ml-4">Delete</Button>
             </div>
         </div>
     </div>
 )
 
 ProjecTask.propTypes = {
+    deleteProject: PropTypes.func,
     projectSequence: PropTypes.string,
     summary: PropTypes.string,
     acceptanceCriteria: PropTypes.string,
     priority: PropTypes.number,
+    projectIdentifier: PropTypes.string
 }
 
-const mapStateToProps = createPropsSelector({})
+const mapDispatchToProps = {
+    deleteProject
+}
 
-export default connect(mapStateToProps)(ProjecTask)
+export default connect(null, mapDispatchToProps)(ProjecTask)

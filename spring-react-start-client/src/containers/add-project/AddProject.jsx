@@ -7,6 +7,7 @@ import template from '../../template'
 
 import {ADD_PROJECT_FORM} from '../../store/form/constants'
 
+import Button from '../../components/button'
 import FormField from '../../components/form-field'
 
 import {createProject, setCurrentProject} from './actions'
@@ -59,7 +60,7 @@ class AddProject extends Component {
                                     <FormField type="date" placeholder="End Date Placeholder" label="End Date Label" name="end_date" />
                                 </div>
 
-                                <button type="submit" className="btn btn-primary btn-block mt-4">Submit</button>
+                                <Button type="submit" className="btn btn-primary btn-block mt-4">Submit</Button>
                             </form>
                         </div>
                     </div>
