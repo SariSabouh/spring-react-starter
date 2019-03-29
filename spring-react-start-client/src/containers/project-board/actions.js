@@ -4,17 +4,19 @@ import {createAction} from 'redux-actions'
 import {getProjectTasksById} from '../../store/project/actions'
 
 export const setCurrentTaskList = createAction('Receive Current Task List')
+export const receiveErrorMessage = createAction('Receive Error Message')
 
 const updateProductTasks = (id) => (dispatch) => {
+    dispatch(receiveErrorMessage({projectNotFound: undefined}))
     return dispatch(getProjectTasksById(id))
         .then(({payload}) => dispatch(setCurrentTaskList(payload)))
 }
 
 export const initProjectBoard = (routeProps) => (dispatch) => {
-    const {match, history} = routeProps
+    const {match} = routeProps
     match.params.id && dispatch(updateProductTasks(match.params.id))
-    .catch((e) => {
-        history.push('/dashboard')
+    .catch((err) => {
+        dispatch(receiveErrorMessage(err.response.data))
     })
     return Promise.resolve()
 }
