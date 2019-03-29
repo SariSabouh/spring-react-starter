@@ -1,7 +1,5 @@
 package com.paliup.starter.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -80,12 +78,6 @@ public class ProjectTaskService {
 	
 	public void deleteProjectTaskByProjectSequence(String backlogId, String sequenceId) {
 		ProjectTask projectTask = findProjectTaskByProjectSequence(backlogId, sequenceId);
-		
-		Backlog backlog = projectTask.getBacklog();
-		List<ProjectTask> projectTasks = backlog.getProjectTasks();
-		projectTasks.remove(projectTask);
-		backlogRepository.save(backlog);
-
 		projectTaskRepository.delete(projectTask);
 	}
 
