@@ -51,21 +51,25 @@ class AddProjectTask extends Component {
                                     <FormField type="date" label="Due Date" name="dueDate" />
                                 </div>
                                 <div className="form-group">
-                                    <select className="form-control form-control-lg" name="priority">
-                                        <option value={0}>Select Priority</option>
-                                        <option value={1}>High</option>
-                                        <option value={2}>Medium</option>
-                                        <option value={3}>Low</option>
-                                    </select>
+                                    <FormField type="select" name="priority">
+                                        <select className="form-control form-control-lg">
+                                            <option value={0}>Select Priority</option>
+                                            <option value={1}>High</option>
+                                            <option value={2}>Medium</option>
+                                            <option value={3}>Low</option>
+                                        </select>
+                                    </FormField>
                                 </div>
 
                                 <div className="form-group">
-                                    <select className="form-control form-control-lg" name="status">
-                                        <option value="">Select Status</option>
-                                        <option value="TO_DO">TO DO</option>
-                                        <option value="IN_PROGRESS">IN PROGRESS</option>
-                                        <option value="DONE">DONE</option>
-                                    </select>
+                                    <FormField type="select" name="status">
+                                        <select className="form-control form-control-lg">
+                                            <option value="">Select Status</option>
+                                            <option value="TO_DO">TO DO</option>
+                                            <option value="IN_PROGRESS">IN PROGRESS</option>
+                                            <option value="DONE">DONE</option>
+                                        </select>
+                                    </FormField>
                                 </div>
 
                                 <Button type="submit" className="btn btn-primary btn-block mt-4">Submit</Button>

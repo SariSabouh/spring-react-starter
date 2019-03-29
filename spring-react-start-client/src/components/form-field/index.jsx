@@ -4,7 +4,7 @@ import {Field as ReduxFormField} from 'redux-form'
 
 import Field from '../field'
 
-const FormField = ({label, type, name, placeholder, classes, rowClasses, defaultChecked, disabled}) => {
+const FormField = ({label, type, name, placeholder, classes, rowClasses, defaultChecked, disabled, children}) => {
     const inputOptions = {
         type,
         placeholder,
@@ -15,6 +15,8 @@ const FormField = ({label, type, name, placeholder, classes, rowClasses, default
     let inputField = <input {...inputOptions} className="form-control form-control-lg" />
     if (type === 'textarea') {
         inputField = <textarea {...inputOptions} className="form-control form-control-lg" />
+    } else if (type === 'select') {
+        inputField = children
     }
 
     return (
@@ -33,6 +35,7 @@ const FormField = ({label, type, name, placeholder, classes, rowClasses, default
 }
 
 FormField.propTypes = {
+    children: PropTypes.node,
     label: PropTypes.node,
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
