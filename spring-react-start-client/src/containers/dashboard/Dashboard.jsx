@@ -4,8 +4,8 @@ import {connect} from 'react-redux'
 import {createPropsSelector} from 'reselect-immutable-helpers'
 import PropTypes from 'prop-types'
 
-import ProjectItem from '../project/ProjectItem'
-import CreateProjectButton from '../project/CreateProjectButton'
+import ProjectItem from './partials/ProjectItem'
+import CreateProjectButton from './partials/CreateProjectButton'
 
 import {getProjectsList} from '../../store/project/selectors'
 

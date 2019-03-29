@@ -5,6 +5,7 @@ import {getProjectsList} from './selectors'
 
 export const receiveProjects = createAction('Receive Projects List')
 export const receiveProject = createAction('Receive Project Data')
+export const receiveProjectsTasks = createAction('Receive Projects Tasks List')
 
 export const getProjects = () => (dispatch) => {
     axios.get('/api/project/all')
@@ -23,4 +24,9 @@ export const getProject = (id) => (dispatch, getStore) => {
                 return response.data
             })
     }
+}
+
+export const getProjectTasksById = (id) => (dispatch, getStore) => {
+    return axios.get(`/api/backlog/${id}`)
+        .then((response) => dispatch(receiveProjectsTasks({tasksList: response.data, id})))
 }

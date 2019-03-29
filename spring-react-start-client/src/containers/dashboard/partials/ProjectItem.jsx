@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
-import Button from '../../components/button'
+import Button from '../../../components/button'
 import {Link} from 'react-router-dom'
 
-import {deleteProject} from './actions'
+import {deleteProject} from '../actions'
 
 class ProjectItem extends Component {
     render() {
@@ -23,7 +23,7 @@ class ProjectItem extends Component {
                         </div>
                         <div className="col-md-4 d-none d-lg-block">
                             <ul className="list-group">
-                                <Link to="/#">
+                                <Link to={`projectBoard/${project.projectIdentifier}`}>
                                     <li className="list-group-item board">
                                         <i className="fa fa-flag-checkered pr-1">Project Board </i>
                                     </li>

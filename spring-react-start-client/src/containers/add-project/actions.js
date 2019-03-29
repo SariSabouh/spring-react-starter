@@ -25,10 +25,3 @@ export const createProject = (formValues, history) => (dispatch) => {
             return Promise.reject(new SubmissionError({...err.response.data}))
         })
 }
-
-export const deleteProject = (id) => (dispatch) => {
-    if (window.confirm('Are you sure?')) { // TODO: Add modals
-        return axios.delete(`/api/project/${id}`)
-            .then(() => dispatch(getProjects()))
-    }
-}

@@ -33,7 +33,7 @@ const FormField = ({label, type, name, placeholder, classes, rowClasses, default
 }
 
 FormField.propTypes = {
-    label: PropTypes.node.isRequired,
+    label: PropTypes.node,
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     checked: PropTypes.bool,
