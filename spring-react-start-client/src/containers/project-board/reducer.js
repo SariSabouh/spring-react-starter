@@ -5,5 +5,5 @@ import { setCurrentTaskList } from './actions';
 const initialState = Immutable.Map()
 
 export default handleActions({
-    [setCurrentTaskList]: (state, {payload}) => state.merge(payload)
+    [setCurrentTaskList]: (state, {payload}) => state.merge({tasksList: payload.tasksList})
 }, initialState)

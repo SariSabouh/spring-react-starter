@@ -1,12 +1,23 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { createPropsSelector } from 'reselect-immutable-helpers'
 import PropTypes from 'prop-types'
 
-import { Link } from 'react-router-dom'
+import ProjectTask from './ProjectTask'
 
 class Backlog extends Component {
     render() {
+        const {tasksList} = this.props
+        const todoTasks = []
+        const inProgressTasks = []
+        const doneTasks = []
+        tasksList && tasksList.forEach((task, idx) => {
+            if (task.status === 'TODO') {
+                todoTasks.push(<ProjectTask key={idx} {...task} />)
+            } else if (task.status === 'INPROGRESS') {
+                inProgressTasks.push(<ProjectTask key={idx} {...task} />)
+            } else if (task.status === 'DONE') {
+                doneTasks.push(<ProjectTask key={idx} {...task} />)
+            }
+        })
         return (
             <div className="t-backlog">
                 <div className="container">
@@ -17,15 +28,7 @@ class Backlog extends Component {
                                     <h3>TO DO</h3>
                                 </div>
                             </div>
-                            <div className="card mb-1 bg-light">
-                                <div className="card-header text-primary">ID: projectSequence -- Priority: priorityString</div>
-                                <div className="card-body bg-light">
-                                    <h5 className="card-title">project_task.summary</h5>
-                                    <p className="card-text text-truncate ">project_task.acceptanceCriteria</p>
-                                    <Link to="#" className="btn btn-primary">View / Update</Link>
-                                    <button className="btn btn-danger ml-4">Delete</button>
-                                </div>
-                            </div>
+                            {todoTasks}
                         </div>
                         <div className="col-md-4">
                             <div className="card text-center mb-2">
@@ -33,6 +36,7 @@ class Backlog extends Component {
                                     <h3>In Progress</h3>
                                 </div>
                             </div>
+                            {inProgressTasks}
                         </div>
                         <div className="col-md-4">
                             <div className="card text-center mb-2">
@@ -40,6 +44,7 @@ class Backlog extends Component {
                                     <h3>Done</h3>
                                 </div>
                             </div>
+                            {doneTasks}
                         </div>
                     </div>
                 </div>
@@ -48,8 +53,19 @@ class Backlog extends Component {
     }
 }
 
-Backlog.propTypes = {}
+Backlog.propTypes = {
+    tasksList: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        projectSequence: PropTypes.string,
+        summary: PropTypes.string,
+        acceptanceCriteria: PropTypes.string,
+        status: PropTypes.string,
+        priority: PropTypes.number,
+        dueDate: PropTypes.string,
+        created_At: PropTypes.string,
+        updated_At: PropTypes.string,
+        projectIdentifier: PropTypes.string
+    }))
+}
 
-const mapStateToProps = createPropsSelector({})
-
-export default connect(mapStateToProps)(Backlog)
+export default Backlog

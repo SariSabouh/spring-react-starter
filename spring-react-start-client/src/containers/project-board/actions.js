@@ -9,7 +9,7 @@ export const initProjectBoard = (routeProps) => (dispatch) => {
     const {match, history} = routeProps
     match.params.id &&
         dispatch(getProjectTasksById(match.params.id))
-            .then((taskList) => dispatch(setCurrentTaskList({taskList})))
+            .then(({payload}) => dispatch(setCurrentTaskList(payload)))
             .catch((e) => {
                 history.push('/dashboard')
             })
