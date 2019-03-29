@@ -8,10 +8,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Header from '../header/Header'
 
 class App extends Component {
-    componentDidUpdate(prevProps) {
-        console.log(prevProps)
-    }
-
     render() {
         return (
             <div className="t-app">

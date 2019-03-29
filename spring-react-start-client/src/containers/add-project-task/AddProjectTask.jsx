@@ -31,7 +31,7 @@ class AddProjectTask extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
-                            <Link to={`/projectBoard/${match.params}`} className="btn btn-light">Back to Project Board</Link>
+                            <Link to={`/projectBoard/${match.params.id}`} className="btn btn-light">Back to Project Board</Link>
                             <h4 className="display-4 text-center">Add /Update Project Task</h4>
                             <p className="lead text-center">Project Name + Project Code</p>
                             <form id={ADD_PROJECT_FORM_TASK} onSubmit={handleSubmit(this.onSubmit)} noValidate={true}>
