@@ -10,12 +10,12 @@ class Backlog extends Component {
         const inProgressTasks = []
         const doneTasks = []
         tasksList && tasksList.forEach((task, idx) => {
-            if (task.status === 'TO_DO') {
-                todoTasks.push(<ProjectTask key={idx} {...task} />)
-            } else if (task.status === 'IN_PROGRESS') {
+            if (task.status === 'IN_PROGRESS') {
                 inProgressTasks.push(<ProjectTask key={idx} {...task} />)
             } else if (task.status === 'DONE') {
                 doneTasks.push(<ProjectTask key={idx} {...task} />)
+            } else {
+                todoTasks.push(<ProjectTask key={idx} {...task} />)
             }
         })
         return (

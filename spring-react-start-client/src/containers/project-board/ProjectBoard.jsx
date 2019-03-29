@@ -7,8 +7,13 @@ import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import Backlog from './partials/Backlog'
 import { getCurrentTaskList, getProjectNotFoundError } from './selectors';
+import { setCurrentTaskList } from './actions';
 
 class ProjectBoard extends Component {
+    componentWillUnmount() {
+        this.props.setCurrentTaskList({tasksList: undefined})
+    }
+
     render() {
         const {tasksList, match, projectNotFoundError} = this.props
         return (
@@ -20,7 +25,11 @@ class ProjectBoard extends Component {
                         </Link>
                         <br />
                         <hr />
-                        <Backlog tasksList={tasksList} />
+                        {tasksList && tasksList.length ?
+                            <Backlog tasksList={tasksList} />
+                        :
+                            <div className="alert alert-info text-center">No Project Tasks on this board</div>
+                        }
                     </div>
                 :
                     <div className="alert alert-danger text-center container">{projectNotFoundError}</div>
@@ -32,7 +41,8 @@ class ProjectBoard extends Component {
 
 ProjectBoard.propTypes = {
     projectNotFoundError: PropTypes.string,
-    tasksList: PropTypes.array
+    tasksList: PropTypes.array,
+    setCurrentTaskList: PropTypes.func
 }
 
 const mapStateToProps = createPropsSelector({
@@ -40,4 +50,8 @@ const mapStateToProps = createPropsSelector({
     projectNotFoundError: getProjectNotFoundError
 })
 
-export default template(connect(mapStateToProps)(ProjectBoard))
+const mapDispatchToProps = {
+    setCurrentTaskList
+}
+
+export default template(connect(mapStateToProps, mapDispatchToProps)(ProjectBoard))
