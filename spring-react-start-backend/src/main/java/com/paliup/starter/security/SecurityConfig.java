@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.paliup.starter.services.CustomUserDetailsService;
 
@@ -30,6 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@Bean
+	public JwtAuthenticationFilter jwtAuthenticationFilter() {
+		return new JwtAuthenticationFilter();
+	}
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -63,7 +69,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				"/**/*.js"
 			).permitAll() // TODO this may be something beneficial. Format better when completed and remove if unused
 			.antMatchers(SIGN_UP_URLS).permitAll() // TODO TEMPORARY REMOVE LATER
-			.anyRequest().authenticated(); // This means that any other request besdies the permitted ones above need to be authenticated
+			.anyRequest().authenticated(); // This means that any other request besides the permitted ones above need to be authenticated
+		
+		http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 
 }
