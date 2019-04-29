@@ -20,6 +20,7 @@ public class UserService {
 	public User saveUser(User newUser) {
 		try {
 			newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
+			newUser.setConfirmPassword("");
 			return userRepository.save(newUser);
 		} catch(Exception ex) {
 			throw new UsernameAlreadyExistsException("Username '" + newUser.getUsername() + "' already exists!");

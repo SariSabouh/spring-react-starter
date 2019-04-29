@@ -39,7 +39,6 @@ public class User implements UserDetails {
 	private String fullName;
 	@NotBlank(message = "Password is required")
 	private String password;
-	@NotBlank(message = "Password Confirmation is required")
 	@Transient
 	private String confirmPassword;
 
