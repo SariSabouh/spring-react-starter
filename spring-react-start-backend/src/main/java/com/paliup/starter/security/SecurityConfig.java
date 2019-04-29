@@ -36,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				"/**/*.css",
 				"/**/*.js"
 			).permitAll() // TODO this may be something beneficial. Format better when completed and remove if unused
+			.antMatchers("/api/users/**").permitAll() // TODO TEMPORARY
 			.anyRequest().authenticated(); // This means that any other request besdies the permitted ones above need to be authenticated
 	}
 
