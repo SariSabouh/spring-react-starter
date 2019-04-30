@@ -22,36 +22,33 @@ public class ProjectTaskService {
 	
 	@Autowired
 	private ProjectRepository projectRepository;
+
+	@Autowired
+	private ProjectService projectService;
 	
 	public ProjectTask addProjectTask(String projectIdentifier, ProjectTask projectTask) {
-		try {
-			Backlog backlog = backlogRepository.findByProjectIdentifier(projectIdentifier);
-			projectTask.setBacklog(backlog);
-			Integer backlogSequence = backlog.getPTSequence();
-			backlogSequence++;
-			backlog.setPTSequence(backlogSequence);
-			projectTask.setProjectSequence(projectIdentifier + "-" + backlogSequence);
-			projectTask.setProjectIdentifier(projectIdentifier);
-			
-			if (projectTask.getPriority() == null || projectTask.getPriority() == 0) {
-				projectTask.setPriority(3);
-			}
-			
-			if (projectTask.getStatus() == null || projectTask.getStatus() == "") {
-				projectTask.setStatus("TO_DO");;
-			}
-			
-			return projectTaskRepository.save(projectTask);
-		} catch (Exception e) {
-			throw new ProjectNotFoundException("ProjectNotFound: '" + projectIdentifier + "'");
+		Project project = projectService.findProjetByIdentifier(projectIdentifier);
+		Backlog backlog = project.getBacklog();
+		projectTask.setBacklog(backlog);
+		Integer backlogSequence = backlog.getPTSequence();
+		backlogSequence++;
+		backlog.setPTSequence(backlogSequence);
+		projectTask.setProjectSequence(projectIdentifier + "-" + backlogSequence);
+		projectTask.setProjectIdentifier(projectIdentifier);
+		
+		if (projectTask.getPriority() == null || projectTask.getPriority() == 0) {
+			projectTask.setPriority(3);
 		}
+		
+		if (projectTask.getStatus() == null || projectTask.getStatus() == "") {
+			projectTask.setStatus("TO_DO");
+		}
+		
+		return projectTaskRepository.save(projectTask);
 	}
 
 	public Iterable<ProjectTask> findBacklogById(String backlogId) {
-		Project project = projectRepository.findByProjectIdentifier(backlogId);
-		if (project == null) {
-			throw new ProjectNotFoundException("Project with ID: '" + backlogId + "' does not exist");
-		}
+		projectService.findProjetByIdentifier(backlogId);
 		return projectTaskRepository.findByProjectIdentifierOrderByPriority(backlogId);
 	}
 	

@@ -1,6 +1,7 @@
 package com.paliup.starter.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.paliup.starter.domain.Backlog;
@@ -24,7 +25,8 @@ public class ProjectService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public Project saveOrUpdateProject(Project project, String username) {
+	public Project saveOrUpdateProject(Project project) {
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		String projectIdentifier = project.getProjectIdentifier().toUpperCase();
 		try {
 			User user = userRepository.findByUsername(username);
@@ -56,12 +58,13 @@ public class ProjectService {
 		}
 	}
 	
-	public Project findProjetByIdentifier(String projectId, String username) {
+	public Project findProjetByIdentifier(String projectId) {
 		Project project = projectRepository.findByProjectIdentifier(projectId.toUpperCase()); // TODO check if its better to create a new SQL rather than filter below
 		if (project == null) {
 			throw new ProjectIdException("Project ID '" + projectId.toUpperCase() + "' does not exist");
 		}
 		
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		if (!project.getProjectLeader().equals(username)) {
 			throw new ProjectNotFoundException("Project not found in your account"); // TODO remove this throw and add it to one exception above
 		}
@@ -69,11 +72,12 @@ public class ProjectService {
 		return  project;
 	}
 	
-	public Iterable<Project> findAllProjects(String username) {
+	public Iterable<Project> findAllProjects() {
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		return projectRepository.findAllByProjectLeader(username);
 	}
 	
-	public void deleteProjectByIdentifier(String projectId, String username) {
-		projectRepository.delete(findProjetByIdentifier(projectId, username));
+	public void deleteProjectByIdentifier(String projectId) {
+		projectRepository.delete(findProjetByIdentifier(projectId));
 	}
 }

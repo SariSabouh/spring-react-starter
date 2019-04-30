@@ -17,5 +17,6 @@ public class StarterApplication {
 		SpringApplication.run(StarterApplication.class, args);
 	}
 
+	// TODO Create unit tests for EVERYTHING
 }
 
