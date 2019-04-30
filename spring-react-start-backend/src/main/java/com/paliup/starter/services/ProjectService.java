@@ -37,12 +37,21 @@ public class ProjectService {
 				project.setBacklog(backlog);
 				backlog.setProject(project);
 				backlog.setProjectIdentifier(projectIdentifier);
-			} else {
+			} else if (project.getId() != null) {
+				Project existingProject = projectRepository.findByProjectIdentifier(projectIdentifier);
+				
+				if(existingProject != null && (!existingProject.getUser().getUsername().equals(username)
+						|| existingProject.getId() != project.getId())) {
+					throw new ProjectNotFoundException("Project not found in your account");
+				}
 				project.setBacklog(backlogRepository.findByProjectIdentifier(projectIdentifier));
 			}
 
 			return projectRepository.save(project);
 		} catch (Exception e) {
+			if (e.getClass().getSimpleName().equals(ProjectNotFoundException.class.getSimpleName())) {
+				throw new ProjectNotFoundException(e.getMessage());
+			}
 			throw new ProjectIdException("Project ID '" + projectIdentifier + "' already exists");
 		}
 	}
