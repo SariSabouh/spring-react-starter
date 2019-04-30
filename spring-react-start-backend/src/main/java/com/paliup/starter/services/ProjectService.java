@@ -7,6 +7,7 @@ import com.paliup.starter.domain.Backlog;
 import com.paliup.starter.domain.Project;
 import com.paliup.starter.domain.User;
 import com.paliup.starter.exceptions.ProjectIdException;
+import com.paliup.starter.exceptions.ProjectNotFoundException;
 import com.paliup.starter.repositories.BacklogRepository;
 import com.paliup.starter.repositories.ProjectRepository;
 import com.paliup.starter.repositories.UserRepository;
@@ -46,25 +47,24 @@ public class ProjectService {
 		}
 	}
 	
-	public Project findProjetByIdentifier(String projectId) {
-		Project project = projectRepository.findByProjectIdentifier(projectId.toUpperCase());
+	public Project findProjetByIdentifier(String projectId, String username) {
+		Project project = projectRepository.findByProjectIdentifier(projectId.toUpperCase()); // TODO check if its better to create a new SQL rather than filter below
 		if (project == null) {
 			throw new ProjectIdException("Project ID '" + projectId.toUpperCase() + "' does not exist");
 		}
+		
+		if (!project.getProjectLeader().equals(username)) {
+			throw new ProjectNotFoundException("Project not found in your account"); // TODO remove this throw and add it to one exception above
+		}
+		
 		return  project;
 	}
 	
-	public Iterable<Project> findAllProjects() {
-		return projectRepository.findAll(); 
+	public Iterable<Project> findAllProjects(String username) {
+		return projectRepository.findAllByProjectLeader(username);
 	}
 	
-	public void deleteProjectByIdentifier(String projectId) {
-		Project project = projectRepository.findByProjectIdentifier(projectId);
-		
-		if (project == null) {
-			throw new ProjectIdException("Cannot delete Project with ID '" + projectId.toUpperCase() + "'. This project does not exist");
-		}
-		
-		projectRepository.delete(project);
+	public void deleteProjectByIdentifier(String projectId, String username) {
+		projectRepository.delete(findProjetByIdentifier(projectId, username));
 	}
 }
