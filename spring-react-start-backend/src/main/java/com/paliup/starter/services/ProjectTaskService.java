@@ -7,21 +7,13 @@ import com.paliup.starter.domain.Backlog;
 import com.paliup.starter.domain.Project;
 import com.paliup.starter.domain.ProjectTask;
 import com.paliup.starter.exceptions.ProjectNotFoundException;
-import com.paliup.starter.repositories.BacklogRepository;
-import com.paliup.starter.repositories.ProjectRepository;
 import com.paliup.starter.repositories.ProjectTaskRepository;
 
 @Service
 public class ProjectTaskService {
 	
 	@Autowired
-	private BacklogRepository backlogRepository;
-	
-	@Autowired
 	private ProjectTaskRepository projectTaskRepository;
-	
-	@Autowired
-	private ProjectRepository projectRepository;
 
 	@Autowired
 	private ProjectService projectService;
@@ -53,10 +45,8 @@ public class ProjectTaskService {
 	}
 	
 	public ProjectTask findProjectTaskByProjectSequence(String backlogId, String sequenceId) {
-		Backlog backlog = backlogRepository.findByProjectIdentifier(backlogId);
-		if (backlog == null) {
-			throw new ProjectNotFoundException("Project with backlog ID: '" + backlogId + "' does not exist");
-		}
+		projectService.findProjetByIdentifier(backlogId);
+		
 		ProjectTask projectTask = projectTaskRepository.findByProjectSequence(sequenceId);
 		if (projectTask == null) {
 			throw new ProjectNotFoundException("Project Task '" + sequenceId + "' not found");
