@@ -8,7 +8,7 @@ class Header extends Component {
         return (
             <nav className="t-header navbar navbar-expand-sm navbar-dark bg-primary mb-4">
                 <div className="container">
-                    <Link className="navbar-brand" to="/dashboard">Personal Project Management Tool</Link>
+                    <Link className="navbar-brand" to="/">Personal Project Management Tool</Link>
                     <Button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
                         <span className="navbar-toggler-icon" />
                     </Button>
