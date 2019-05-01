@@ -8,7 +8,9 @@ import {createPropsSelector} from 'reselect-immutable-helpers'
 import { LOGIN_FORM } from '../../store/form/constants'
 
 import Button from '../../components/button'
-import FormField from '../../components/form-field';
+import FormField from '../../components/form-field'
+
+import { login } from './actions'
 
 class Login extends Component {
     constructor(props) {
@@ -17,8 +19,9 @@ class Login extends Component {
         this.onSubmit = this.onSubmit.bind(this)
     }
 
-    onSubmit() {
-        console.log('aa')
+    onSubmit(formValues) {
+        const {history, login} = this.props
+        return login(formValues, history)
     }
 
     render() {
@@ -38,12 +41,12 @@ class Login extends Component {
                                 }
 
                                 <div className="form-group">
-                                    <FormField type="email" placeholder="Email Address" name="email" />
+                                    <FormField type="email" placeholder="Email Address" name="username" />
                                 </div>
                                 <div className="form-group">
                                     <FormField type="password" placeholder="Password" name="password" />
                                 </div>
-                                <Button className="btn btn-info btn-block mt-4">Submit</Button>
+                                <Button type="submit" className="btn btn-info btn-block mt-4">Submit</Button>
                             </form>
                         </div>
                     </div>
@@ -55,7 +58,8 @@ class Login extends Component {
 
 Login.propTypes = {
     error: PropTypes.string,
-    handleSubmit: PropTypes.func
+    handleSubmit: PropTypes.func,
+    login: PropTypes.func
 }
 
 const LoginForm = reduxForm({
@@ -67,7 +71,7 @@ const mapStateToProps = createPropsSelector({
 })
 
 const mapDispatchToProps = {
-
+    login
 }
 
 export default template(connect(mapStateToProps, mapDispatchToProps)(LoginForm))

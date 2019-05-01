@@ -8,7 +8,9 @@ import {createPropsSelector} from 'reselect-immutable-helpers'
 import { REGISTER_FORM } from '../../store/form/constants'
 
 import Button from '../../components/button'
-import FormField from '../../components/form-field';
+import FormField from '../../components/form-field'
+
+import { registerUser } from './actions'
 
 class Register extends Component {
     constructor(props) {
@@ -17,8 +19,9 @@ class Register extends Component {
         this.onSubmit = this.onSubmit.bind(this)
     }
 
-    onSubmit() {
-        console.log('aa')
+    onSubmit(formValues) {
+        const {history, registerUser} = this.props
+        return registerUser(formValues, history)
     }
 
     render() {
@@ -38,10 +41,10 @@ class Register extends Component {
                                     </div>
                                 }
                                 <div className="form-group">
-                                    <FormField type="text" placeholder="Name" name="name" />
+                                    <FormField type="text" placeholder="Name" name="fullName" />
                                 </div>
                                 <div className="form-group">
-                                    <FormField type="email" placeholder="Email Address" name="email" />
+                                    <FormField type="email" placeholder="Email Address" name="username" />
 
                                 </div>
                                 <div className="form-group">
@@ -49,9 +52,9 @@ class Register extends Component {
                                 </div>
                                 <div className="form-group">
                                     <FormField type="password" placeholder="Confirm Password"
-                                        name="password2" />
+                                        name="confirmPassword" />
                                 </div>
-                                <Button className="btn btn-info btn-block mt-4">Submit</Button>
+                                <Button type="submit" className="btn btn-info btn-block mt-4">Submit</Button>
                             </form>
                         </div>
                     </div>
@@ -63,7 +66,8 @@ class Register extends Component {
 
 Register.propTypes = {
     error: PropTypes.string,
-    handleSubmit: PropTypes.func
+    handleSubmit: PropTypes.func,
+    registerUser: PropTypes.func
 }
 
 const RegisterForm = reduxForm({
@@ -75,7 +79,7 @@ const mapStateToProps = createPropsSelector({
 })
 
 const mapDispatchToProps = {
-
+    registerUser
 }
 
 export default template(connect(mapStateToProps, mapDispatchToProps)(RegisterForm))
