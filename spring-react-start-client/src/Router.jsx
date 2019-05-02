@@ -21,6 +21,7 @@ import { initLogin, initRegister } from './containers/user-management/actions'
 export default class Router extends Component {
     render() {
         const { store } = this.props
+        // TODO Think about creating a secured route .. just a maybe
         return (
             <Provider store={store}>
                 <BrowserRouter>

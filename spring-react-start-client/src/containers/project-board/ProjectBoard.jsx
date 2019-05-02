@@ -10,10 +10,6 @@ import { getCurrentTaskList, getProjectNotFoundError } from './selectors';
 import { setCurrentTaskList } from './actions';
 
 class ProjectBoard extends Component {
-    componentWillUnmount() {
-        this.props.setCurrentTaskList({tasksList: undefined})
-    }
-
     render() {
         const {tasksList, match, projectNotFoundError} = this.props
         return (
