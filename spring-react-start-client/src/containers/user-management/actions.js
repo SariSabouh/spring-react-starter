@@ -3,9 +3,6 @@ import axios from 'axios'
 import {SubmissionError} from 'redux-form'
 
 import { setJWTToken } from '../../utils/request-utils'
-import jwt_decode from 'jwt-decode'
-
-import { receiveUserData } from '../../store/user/actions'
 
 const validateForm = (formValues, isRegister) => {
     const errors = {}
@@ -77,11 +74,13 @@ export const login = (formValues, history) => (dispatch) => {
     return axios.post('/api/users/login', formValues)
         .then(({data}) => {
             dispatch(setJWTToken(data.token))
-            const decodedToken = jwt_decode(data.token)
-            dispatch(receiveUserData({fullName: decodedToken.fullName, username: decodedToken.username}))
             history.push('/dashboard')
         })
         .catch((err) => {
             return Promise.reject(new SubmissionError({...err.response.data}))
         })
+}
+
+export const logout = () => (dispatch) => {
+    dispatch(setJWTToken())
 }

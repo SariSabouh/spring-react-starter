@@ -1,6 +1,7 @@
 import axios from "axios"
 import jwt_decode from 'jwt-decode'
-import { setLoggedIn } from "../store/user/actions";
+
+import { setLoggedIn, receiveUserData } from "../store/user/actions"
 
 const AUTH_KEY_NAME = 'sec-auth'
 
@@ -19,8 +20,11 @@ const removeItemFromBrowserStorage = (keyName) => {
 export const setJWTToken = (token) => (dispatch) => {
     if (token) {
         setItemInBrowserStorage(AUTH_KEY_NAME, token)
-        dispatch(setLoggedIn({authenticated: true}))
         axios.defaults.headers.common['Authorization'] = token
+
+        const decodedToken = jwt_decode(token)
+        dispatch(receiveUserData({fullName: decodedToken.fullName, username: decodedToken.username}))
+        dispatch(setLoggedIn({authenticated: true}))
     } else {
         removeItemFromBrowserStorage(AUTH_KEY_NAME)
         dispatch(setLoggedIn({authenticated: false}))

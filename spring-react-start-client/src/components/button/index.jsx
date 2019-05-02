@@ -15,7 +15,7 @@ const Button = (props) => {
 
     const {
         // Values
-        href,
+        to,
         icon,
         iconSize,
         iconClassName,
@@ -40,7 +40,7 @@ const Button = (props) => {
     } = props
 
     const classes = classNames('c-button', {
-        'c--anchor': !!href,
+        'c--anchor': !!to,
         'c--icon-only': !!icon && !children
     }, className)
     const innerClass = classNames('c-button__inner', innerClassName)
@@ -51,7 +51,7 @@ const Button = (props) => {
         'u-visually-hidden': !showIconText
     })
     const attrs = {
-        href, id, disabled, name, value, role, onClick,
+        to, id, disabled, name, value, role, onClick,
         onKeyUp: onKeyUpWrapper(onClick),
         className: classes
     }
@@ -82,7 +82,7 @@ const Button = (props) => {
         }
     })
 
-    if (href) {
+    if (to) {
         return (
             <Link {...attrs} target={openInNewTab ? '_blank' : ''}>
                 <div className={innerClass}>{childrenNodes}</div>
@@ -120,7 +120,7 @@ Button.propTypes = {
     /**
      * If specified, the component is rendered as a link, with this value set as the href.
      */
-    href: PropTypes.string,
+    to: PropTypes.string,
 
     /**
      * If specified, includes an icon of the given name in the button.
