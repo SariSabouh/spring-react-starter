@@ -41,9 +41,9 @@ const isTokenExpired = (authorizationToken) => {
 
 export const initSession = () => (dispatch) => {
     const auth = getItemFromBrowserStorage(AUTH_KEY_NAME)
-    if (!auth || isTokenExpired(auth)) {
+    if ((!auth || isTokenExpired(auth)) && axios.defaults.headers.common['Authorization']) {
         dispatch(setJWTToken())
-    } else {
+    } else if (auth && axios.defaults.headers.common['Authorization'] !== auth) {
         dispatch(setJWTToken(auth))
     }
     return Promise.resolve()
