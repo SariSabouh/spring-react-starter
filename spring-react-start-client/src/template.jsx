@@ -1,5 +1,8 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
+
+import { initSession } from './utils/request-utils'
 
 const getDisplayName = (WrappedComponent) => {
     return WrappedComponent.displayName || WrappedComponent.name || 'Component'
@@ -13,10 +16,13 @@ const template = (WrappedComponent) => {
             this.WrappedComponent = WrappedComponent
         }
 
-        dispatchRouteChange({fetchAction, dispatch}) {
-            if (fetchAction) {
-                dispatch(fetchAction(this.props))
-            }
+        dispatchRouteChange({fetchAction, dispatch, history}) {
+            this.props.initSession(history)
+                .then(() => {
+                    if (fetchAction) {
+                        dispatch(fetchAction(this.props))
+                    }
+                })
         }
 
         componentWillMount() {
@@ -32,10 +38,15 @@ const template = (WrappedComponent) => {
     Template.propTypes = {
         dispatch: PropTypes.func,
         location: PropTypes.object,
+        initSession: PropTypes.func,
         retryingConnection: PropTypes.bool
     }
 
-    return Template
+    const mapDispatchToProps = {
+        initSession
+    }
+
+    return connect(null, mapDispatchToProps)(Template)
 }
 
 export default template

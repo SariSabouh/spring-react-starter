@@ -12,6 +12,7 @@ export const receiveProjectTask = createAction('Receive Project Task')
 export const getProjects = () => (dispatch) => {
     axios.get('/api/project/all')
         .then((response) => dispatch(receiveProjects({projectsList: response.data})))
+        .catch((e) => e.response.status === 401 && console.error('Please log in'))
 }
 
 export const getProject = (id) => (dispatch, getStore) => {

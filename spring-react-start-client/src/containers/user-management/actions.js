@@ -1,9 +1,11 @@
 import isEmail from 'validator/lib/isEmail'
 import axios from 'axios'
-import {createAction} from 'redux-actions'
 import {SubmissionError} from 'redux-form'
 
-export const setCurrentProject = createAction('Receive Current Project')
+import { setJWTToken } from '../../utils/request-utils'
+import jwt_decode from 'jwt-decode'
+
+import { receiveUserData } from '../../store/user/actions'
 
 const validateForm = (formValues, isRegister) => {
     const errors = {}
@@ -73,7 +75,12 @@ export const login = (formValues, history) => (dispatch) => {
     }
 
     return axios.post('/api/users/login', formValues)
-        .then(() => history.push('/dashboard'))
+        .then(({data}) => {
+            dispatch(setJWTToken(data.token))
+            const decodedToken = jwt_decode(data.token)
+            dispatch(receiveUserData({fullName: decodedToken.fullName, username: decodedToken.username}))
+            history.push('/dashboard')
+        })
         .catch((err) => {
             return Promise.reject(new SubmissionError({...err.response.data}))
         })

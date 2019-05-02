@@ -24,4 +24,4 @@ App.propTypes = {
     children: PropTypes.array.isRequired,
 }
 
-export default withRouter(App);
+export default withRouter(App)

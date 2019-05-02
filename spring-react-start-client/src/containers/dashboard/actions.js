@@ -1,8 +1,14 @@
 import axios from 'axios'
 import {getProjects} from "../../store/project/actions"
 
-export const initDashboard = () => (dispatch) => {
-    return dispatch(getProjects())
+import {isUserLoggedIn} from '../../store/user/selectors'
+
+export const initDashboard = ({history}) => (dispatch, getStore) => {
+    if (!isUserLoggedIn(getStore())) {
+        history.push('/login')
+        return Promise.resolve()
+    }
+    return dispatch(getProjects()) // TODO: Think about keeping 401 or kick them out before
 }
 
 export const deleteProject = (id) => (dispatch) => {
