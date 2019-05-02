@@ -3,6 +3,7 @@ import axios from 'axios'
 import {SubmissionError} from 'redux-form'
 
 import { setJWTToken } from '../../utils/request-utils'
+import {isUserLoggedIn} from '../../store/user/selectors'
 
 const validateForm = (formValues, isRegister) => {
     const errors = {}
@@ -44,11 +45,20 @@ const validateForm = (formValues, isRegister) => {
     return errors
 }
 
-export const initLogin = () => (dispatch) => {
+const checkLoginStatus = (history) => (dispatch, getStore) => {
+    if (isUserLoggedIn(getStore())) {
+        history.push('/dashboard')
+        return Promise.resolve()
+    }
+}
+
+export const initLogin = ({history}) => (dispatch) => {
+    dispatch(checkLoginStatus(history))
     return Promise.resolve()
 }
 
-export const initRegister = () => (dispatch) => {
+export const initRegister = ({history}) => (dispatch) => {
+    dispatch(checkLoginStatus(history))
     return Promise.resolve()
 }
 

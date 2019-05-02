@@ -2,16 +2,22 @@ import axios from 'axios'
 import {createAction} from 'redux-actions'
 import {SubmissionError} from 'redux-form'
 
+import {isUserLoggedIn} from '../../store/user/selectors'
+
 import {getProject} from '../../store/project/actions'
 
 export const setCurrentProject = createAction('Receive Current Project')
 
-export const initAddProject = (routeProps) => (dispatch) => {
+export const initAddProject = (routeProps) => (dispatch, getStore) => {
     const {match, history} = routeProps
-    match.params.id &&
-        dispatch(getProject(match.params.id))
-            .then((project) => dispatch(setCurrentProject({currentProject: project})))
-            .catch((e) => history.push('/dashboard'))
+    if (!isUserLoggedIn(getStore())) {
+        history.push('/login')
+    } else {
+        match.params.id &&
+            dispatch(getProject(match.params.id))
+                .then((project) => dispatch(setCurrentProject({currentProject: project})))
+                .catch((e) => history.push('/dashboard'))
+    }
     return Promise.resolve()
 }
 
