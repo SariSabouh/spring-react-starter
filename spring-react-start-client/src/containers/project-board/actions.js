@@ -21,7 +21,7 @@ export const initProjectBoard = (routeProps) => (dispatch, getStore) => {
     } else {
         match.params.id && dispatch(updateProductTasks(match.params.id))
         .catch((err) => {
-            dispatch(receiveErrorMessage(err.response.data))
+            dispatch(receiveErrorMessage({...err.response.data}))
         })
     }
     return Promise.resolve()

@@ -60,13 +60,10 @@ public class ProjectService {
 	
 	public Project findProjetByIdentifier(String projectId) {
 		Project project = projectRepository.findByProjectIdentifier(projectId.toUpperCase()); // TODO check if its better to create a new SQL rather than filter below
-		if (project == null) {
-			throw new ProjectIdException("Project ID '" + projectId.toUpperCase() + "' does not exist");
-		}
-		
+
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		if (!project.getProjectLeader().equals(username)) {
-			throw new ProjectNotFoundException("Project not found in your account"); // TODO remove this throw and add it to one exception above
+		if (project == null || !project.getProjectLeader().equals(username)) {
+			throw new ProjectNotFoundException("Project not found in your account");
 		}
 		
 		return  project;
