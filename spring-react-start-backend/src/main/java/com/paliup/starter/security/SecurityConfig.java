@@ -66,7 +66,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				"/**/*.jpg",
 				"/**/*.html",
 				"/**/*.css",
-				"/**/*.js"
+				"/**/*.js",
+				"/**/*.json"
 			).permitAll() // TODO this may be something beneficial. Format better when completed and remove if unused
 			.antMatchers(SIGN_UP_URLS).permitAll() // TODO TEMPORARY REMOVE LATER
 			.anyRequest().authenticated(); // This means that any other request besides the permitted ones above need to be authenticated
