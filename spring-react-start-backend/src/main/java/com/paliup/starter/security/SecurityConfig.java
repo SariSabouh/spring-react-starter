@@ -58,18 +58,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS) // TODO Do we need it (Redux should be good enough?)
 			.and()
 			.authorizeRequests() // This and the below allows these endpoints to be accessible without having to be authenticated
-			.antMatchers("/",
-				"/favicon.ico",
-				"/**/*.png",
-				"/**/*.gif",
-				"/**/*.svg",
-				"/**/*.jpg",
-				"/**/*.html",
-				"/**/*.css",
-				"/**/*.js",
-				"/**/*.json"
-			).permitAll() // TODO this may be something beneficial. Format better when completed and remove if unused
-			.antMatchers(SIGN_UP_URLS).permitAll() // TODO TEMPORARY REMOVE LATER
+			.antMatchers(SIGN_UP_URLS).permitAll()
+			.antMatchers("/api/**").authenticated()
+			.antMatchers("/**").permitAll() // Allow all except the ones above
 			.anyRequest().authenticated(); // This means that any other request besides the permitted ones above need to be authenticated
 		
 		http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

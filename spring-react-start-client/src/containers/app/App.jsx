@@ -21,7 +21,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-    children: PropTypes.array.isRequired,
+    children: PropTypes.object.isRequired,
 }
 
 export default withRouter(App)
