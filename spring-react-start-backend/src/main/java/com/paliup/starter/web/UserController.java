@@ -47,7 +47,7 @@ public class UserController {
 	private AuthenticationManager authenticationManager;
 
 	@PostMapping("/register")
-	public ResponseEntity<?> createregisterUser(@Valid @RequestBody User user, BindingResult result) {
+	public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result) {
 		userValidator.validate(user, result);
 
 		ResponseEntity<?> errorMap = mapValidationErrorService.mapValidationService(result);
