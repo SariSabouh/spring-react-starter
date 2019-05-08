@@ -88,8 +88,6 @@ public class ProjectServiceTest {
 		assertEquals(project.getProjectIdentifier(), newProject.getProjectIdentifier());
 		assertEquals(project.getProjectLeader(), newProject.getProjectLeader());
 		assertEquals(project.getProjectName(), newProject.getProjectName());
-		assertTrue(newProject.getBacklog() == null);
-		assertTrue(project.getBacklog() != null);
 	}
 	
 	@Test(expected = ProjectNotFoundException.class)
