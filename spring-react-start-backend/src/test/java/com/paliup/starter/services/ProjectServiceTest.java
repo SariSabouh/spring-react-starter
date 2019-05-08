@@ -1,8 +1,8 @@
 package com.paliup.starter.services;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -137,17 +137,33 @@ public class ProjectServiceTest {
 
 	@Test
 	public void testFindProjetByIdentifier() {
-		fail("Not yet implemented");
+		when(projectRepository.findByProjectIdentifier("QWERT")).thenReturn(TestUtils.getTestProject());
+		Project project = projectService.findProjetByIdentifier("QWERT");
+		
+		assertEquals("QWERT", project.getProjectIdentifier());
+		assertEquals("a@a.com", project.getProjectLeader());
+		assertEquals("Test Project", project.getProjectName());
+	}
+	
+	@Test(expected = ProjectNotFoundException.class)
+	public void testFindProjetByIdentifier_projectNotFound() {
+		when(projectRepository.findByProjectIdentifier("QWERT")).thenReturn(null);
+		projectService.findProjetByIdentifier("QWERT");
+	}
+	
+	@Test(expected = ProjectNotFoundException.class)
+	public void testFindProjetByIdentifier_projectLeaderNotAuth() {
+		Project project = TestUtils.getTestProject();
+		project.setProjectLeader("aa@a.com");
+
+		when(projectRepository.findByProjectIdentifier("QWERT")).thenReturn(project);
+		projectService.findProjetByIdentifier("QWERT");
 	}
 
 	@Test
 	public void testFindAllProjects() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testDeleteProjectByIdentifier() {
-		fail("Not yet implemented");
+		Iterable<Project> projects = projectService.findAllProjects();
+		assertFalse(projects.iterator().hasNext());
 	}
 
 }
