@@ -32,7 +32,7 @@ public class ProjectTaskService {
 			projectTask.setPriority(3);
 		}
 		
-		if (projectTask.getStatus() == null || projectTask.getStatus() == "") {
+		if (projectTask.getStatus() == null || projectTask.getStatus().equals("")) {
 			projectTask.setStatus("TO_DO");
 		}
 		

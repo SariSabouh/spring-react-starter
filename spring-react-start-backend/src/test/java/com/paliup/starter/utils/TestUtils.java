@@ -1,6 +1,8 @@
 package com.paliup.starter.utils;
 
+import com.paliup.starter.domain.Backlog;
 import com.paliup.starter.domain.Project;
+import com.paliup.starter.domain.ProjectTask;
 import com.paliup.starter.domain.User;
 
 public class TestUtils {
@@ -19,8 +21,28 @@ public class TestUtils {
 		project.setProjectName("Test Project");
 		project.setProjectLeader("a@a.com");
 		project.setProjectIdentifier("QWERT");
+		project.setBacklog(getTestBacklog(project));
 		
 		return project;
+	}
+	
+	public static Backlog getTestBacklog(Project project) {
+		Backlog backlog = new Backlog();
+		backlog.setId(Long.parseLong("1"));
+		backlog.setProject(project);
+		backlog.setProjectIdentifier("QWERT");
+		
+		return backlog;
+	}
+	
+	public static ProjectTask getTestProjectTask() {
+		ProjectTask projectTask = new ProjectTask();
+		projectTask.setProjectSequence("QWERT-1");
+		projectTask.setSummary("Task Summary");
+		projectTask.setStatus("TO_DO");
+		projectTask.setPriority(3);
+		projectTask.setProjectIdentifier("QWERT");
+		return projectTask;
 	}
 
 }
