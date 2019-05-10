@@ -59,7 +59,7 @@ public class UserController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result) {
-		ResponseEntity<?> errorMap = mapValidationErrorService.mapValidationService(result); // TODO Can be abstracted further
+		ResponseEntity<?> errorMap = mapValidationErrorService.mapValidationService(result);
 		if (errorMap != null) return errorMap;
 		
 		Authentication authentication = authenticationManager.authenticate(

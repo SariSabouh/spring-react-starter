@@ -59,7 +59,7 @@ public class ProjectService {
 	}
 	
 	public Project findProjetByIdentifier(String projectId) {
-		Project project = projectRepository.findByProjectIdentifier(projectId.toUpperCase()); // TODO check if its better to create a new SQL rather than filter below
+		Project project = projectRepository.findByProjectIdentifier(projectId.toUpperCase());
 
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 		if (project == null || !project.getProjectLeader().equals(username)) {
