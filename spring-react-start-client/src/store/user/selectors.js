@@ -1,6 +1,6 @@
-import {createGetSelector} from 'reselect-immutable-helpers'
+import { createGetSelector } from 'reselect-immutable-helpers'
 
-import {getUser} from '../../store/selectors'
+import { getUser } from '../selectors'
 
 export const isUserLoggedIn = createGetSelector(getUser, 'authenticated')
 export const getUsername = createGetSelector(getUser, 'username')

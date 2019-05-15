@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
-import template from '../../template'
-import {connect} from 'react-redux'
-import {createPropsSelector} from 'reselect-immutable-helpers'
+import { connect } from 'react-redux'
+import { createPropsSelector } from 'reselect-immutable-helpers'
 import PropTypes from 'prop-types'
 
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import template from '../../template'
 import Backlog from './partials/Backlog'
-import { getCurrentTaskList, getProjectNotFoundError } from './selectors';
-import { setCurrentTaskList } from './actions';
+import { getCurrentTaskList, getProjectNotFoundError } from './selectors'
+import { setCurrentTaskList } from './actions'
 
 class ProjectBoard extends Component {
     render() {
-        const {tasksList, match, projectNotFoundError} = this.props
+        const { tasksList, match, projectNotFoundError } = this.props
         return (
             <div className="t-project-board">
                 {!projectNotFoundError ?
@@ -23,11 +23,11 @@ class ProjectBoard extends Component {
                         <hr />
                         {tasksList && tasksList.length ?
                             <Backlog tasksList={tasksList} />
-                        :
+                            :
                             <div className="alert alert-info text-center">No Project Tasks on this board</div>
                         }
                     </div>
-                :
+                    :
                     <div className="alert alert-danger text-center container">{projectNotFoundError}</div>
                 }
             </div >

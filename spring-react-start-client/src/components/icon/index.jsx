@@ -4,9 +4,7 @@ import classNames from 'classnames'
 
 const uuid = (() => {
     let i = 0
-    return () => {
-        return i++
-    }
+    return () => i++
 })()
 
 /**
@@ -30,7 +28,7 @@ class Icon extends React.Component {
             style
         } = this.props
 
-        const a11y = (title.length) ? {role: 'img'} : {'aria-hidden': 'true'}
+        const a11y = (title.length) ? { role: 'img' } : { 'aria-hidden': 'true' }
         const sizeClass = `c--${size}`
 
         const classes = classNames('c-icon', {

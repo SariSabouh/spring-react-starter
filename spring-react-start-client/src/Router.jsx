@@ -34,12 +34,13 @@ export default class Router extends Component {
                             <Route exact path="/dashboard(.html)?" render={(routeProps) => <Dashboard dispatch={store.dispatch} {...routeProps} fetchAction={initDashboard} />} />
                             <Route exact path="/addProject/:id?" render={(routeProps) => <AddProject dispatch={store.dispatch} {...routeProps} fetchAction={initAddProject} />} />
                             <Route exact path="/projectBoard/:id?" render={(routeProps) => <ProjectBoard dispatch={store.dispatch} {...routeProps} fetchAction={initProjectBoard} />} />
-                            <Route exact path="/addProjectTask/:id?/:sequence?" render={(routeProps) => <AddProjectTask dispatch={store.dispatch} {...routeProps} fetchAction={initAddProjectTask} />} />
+                            <Route exact path="/addProjectTask/:id?/:sequence?"
+                                render={(routeProps) => <AddProjectTask dispatch={store.dispatch} {...routeProps} fetchAction={initAddProjectTask} />} />
                             <Route component={NotFound} />
                         </Switch>
                     </App>
                 </BrowserRouter>
             </Provider>
-        );
+        )
     }
 }

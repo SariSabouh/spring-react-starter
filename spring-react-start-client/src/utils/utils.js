@@ -7,8 +7,9 @@ const cacheHashManifest = {
     }
 }
 
-export const getAssetUrl = (path) => {
+export const getAssetUrl = (path) => { // eslint-disable-line import/prefer-default-export
     const hash = cacheHashManifest.hashes[path]
     const cacheBreaker = hash || cacheHashManifest.buildDate(path)
     return `${path}?${cacheBreaker}`
 }
+// There will be other exports usually

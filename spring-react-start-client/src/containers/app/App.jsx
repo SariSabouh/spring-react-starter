@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Header from '../header/Header'
 
-class App extends Component {
+class App extends PureComponent {
     render() {
         return (
             <div className="t-app">
@@ -15,7 +15,7 @@ class App extends Component {
                     {this.props.children}
                 </main>
             </div>
-        );
+        )
     }
 }
 

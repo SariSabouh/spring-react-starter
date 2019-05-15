@@ -9,6 +9,7 @@
     "immutable": "^4.0.0-rc.12",
     "jwt-decode": "^2.2.0",
     "node-sass": "^4.12.0",
+    "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",
@@ -27,10 +28,17 @@
     "start": "react-scripts start",
     "build": "react-scripts build && postbuild",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "npm run lint:js && npm run lint:sass",
+    "lint:fix": "npm run lint:js -- --fix",
+    "lint:js": "eslint ./**/*.{js,jsx}",
+    "lint:sass": "sass-lint -c .sass-lint.yml 'app/**/*.scss' -v"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "airbnb-base"
+    ]
   },
   "browserslist": [
     ">0.2%",
@@ -39,6 +47,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
     "http-proxy-middleware": "^0.19.1"
   }
 }

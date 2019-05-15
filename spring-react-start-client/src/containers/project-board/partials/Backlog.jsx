@@ -5,7 +5,7 @@ import ProjectTask from './ProjectTask'
 
 class Backlog extends Component {
     render() {
-        const {tasksList} = this.props
+        const { tasksList } = this.props
         const todoTasks = []
         const inProgressTasks = []
         const doneTasks = []

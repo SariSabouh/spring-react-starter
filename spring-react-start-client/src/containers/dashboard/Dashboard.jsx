@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import template from '../../template'
 import { connect } from 'react-redux'
 import { createPropsSelector } from 'reselect-immutable-helpers'
 import PropTypes from 'prop-types'
+import template from '../../template'
 
 import ProjectItem from './partials/ProjectItem'
 import CreateProjectButton from './partials/CreateProjectButton'

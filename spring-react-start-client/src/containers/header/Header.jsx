@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { createPropsSelector } from 'reselect-immutable-helpers'
 
+import { Link } from 'react-router-dom'
 import Button from '../../components/button'
-import {Link} from 'react-router-dom'
 
 import { getUsername, isUserLoggedIn } from '../../store/user/selectors'
 import { logout } from '../user-management/actions'
 
 class Header extends Component {
     render() {
-        const {username, isUserLoggedIn, logout} = this.props
+        const { username, isUserLoggedIn, logout } = this.props
         return (
             <nav className="t-header navbar navbar-expand-sm navbar-dark bg-primary mb-4">
                 <div className="container">
@@ -31,14 +31,14 @@ class Header extends Component {
                             <li className="nav-item">
                                 {isUserLoggedIn ?
                                     <div className="nav-link fas fa-user-circle mr-1">Welcome {username}</div>
-                                :
+                                    :
                                     <Link className="nav-link " to="register.html">Sign Up</Link>
                                 }
                             </li>
                             <li className="nav-item">
                                 {isUserLoggedIn ?
                                     <Button className="nav-link" to="/" onClick={() => { logout() }}>Logout</Button>
-                                :
+                                    :
                                     <Link className="nav-link" to="login.html">Login</Link>
                                 }
                             </li>

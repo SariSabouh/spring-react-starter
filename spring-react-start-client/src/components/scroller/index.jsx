@@ -1,7 +1,7 @@
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react'
 import Slider from 'react-slick'
 
-const Scroller = ({children}) => {
+const Scroller = ({ children }) => {
     const settings = {
         arrows: false,
         dots: true,

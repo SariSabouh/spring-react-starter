@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react'
 import classNames from 'classnames'
 
 import SkeletonBlock from '../skeleton-block'
@@ -22,7 +22,7 @@ class Image extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.src !== nextProps.src) {
-            const {alt, height, src, width} = this.props
+            const { alt, height, src, width } = this.props
             const tagClasses = classNames('c-image__tag', 'c--is-transitioning')
             const imageProps = {
                 src,
@@ -31,7 +31,7 @@ class Image extends React.Component {
                 height,
                 width
             }
-            this.setState({loaded: false, transitioningImageProps: imageProps})
+            this.setState({ loaded: false, transitioningImageProps: imageProps })
         }
     }
 
@@ -44,7 +44,7 @@ class Image extends React.Component {
 
     imageLoaded() {
         this.timeout = setTimeout(() => {
-            this.setState({loaded: true, transitioningImageProps: null}, this.props.onImageLoaded)
+            this.setState({ loaded: true, transitioningImageProps: null }, this.props.onImageLoaded)
         }, this.props.artificialLoadingDelay || 0)
     }
 
@@ -95,23 +95,23 @@ class Image extends React.Component {
         )
 
         // alt is in imageProps
-        /* eslint-disable jsx-a11y/img-has-alt */
+        /* eslint-disable jsx-a11y/alt-text */
         const image = this.state.loaded ? (
             <img {...imageProps} />
         ) : (
             <span>
                 {useLoaderDuringTransitions || this.state.transitioningImageProps === null ?
                     loaderNode
-                :
+                    :
                     // Image src is changing but we will continue displaying the previous image
                     // until the new one is finished loading, to allow for instant swap
                     <img {...this.state.transitioningImageProps} />
                 }
-                <img {...imageProps} onLoad={this.imageLoaded} style={{display: 'none'}} />
+                <img {...imageProps} onLoad={this.imageLoaded} style={{ display: 'none' }} />
             </span>
         )
 
-        /* eslint-enable jsx-a11y/img-has-alt */
+        /* eslint-enable jsx-a11y/alt-text */
 
         return (
             <div className={classes}>

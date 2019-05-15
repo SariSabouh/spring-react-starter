@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+import { createPropsSelector } from 'reselect-immutable-helpers'
 import template from '../../template'
-import {reduxForm} from 'redux-form'
-import {connect} from 'react-redux'
-import {createPropsSelector} from 'reselect-immutable-helpers'
 
 import { REGISTER_FORM } from '../../store/form/constants'
 
@@ -20,12 +20,12 @@ class Register extends Component {
     }
 
     onSubmit(formValues) {
-        const {history, registerUser} = this.props
+        const { history, registerUser } = this.props
         return registerUser(formValues, history)
     }
 
     render() {
-        const {handleSubmit, error} = this.props
+        const { handleSubmit, error } = this.props
 
         return (
             <div className="t-register">

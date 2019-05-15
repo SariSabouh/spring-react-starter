@@ -5,9 +5,7 @@ import classNames from 'classnames'
 const getUniqueId = (() => {
     let i = 0
 
-    return () => {
-        return `field-${i++}`
-    }
+    return () => `field-${i++}`
 })()
 
 /**
@@ -42,22 +40,20 @@ class Field extends React.Component {
     shouldStackLabelInput() {
         if (!this.props.labelPosition) {
             return !this.isCheckRadio
-        } else {
-            return this.props.labelPosition === 'top'
         }
+        return this.props.labelPosition === 'top'
     }
 
     shouldPlaceLabelAtEnd() {
         if (!this.props.labelPosition) {
             return this.isCheckRadio
-        } else {
-            return this.props.labelPosition === 'end'
         }
+        return this.props.labelPosition === 'end'
     }
 
     buildEventHandler(eventHandlerName) {
         const customHandler = this.props.customEventHandlers[eventHandlerName]
-        const input = this.props.input
+        const { input } = this.props
 
         if (input) {
             return typeof customHandler === 'function' ? (e) => {
@@ -91,11 +87,11 @@ class Field extends React.Component {
                 child.type === 'input' ||
                 child.type === 'select' ||
                 child.type === 'textarea' ||
-                typeof child.type == 'function'  // Custom component, can handle props
+                typeof child.type === 'function' // Custom component, can handle props
             )
 
             if (isFormControl) {
-                childProps = {...this.props.input}
+                childProps = { ...this.props.input }
             }
 
             if (customEventHandlers) {
@@ -209,7 +205,6 @@ class Field extends React.Component {
         )
     }
 }
-
 
 
 Field.propTypes = {

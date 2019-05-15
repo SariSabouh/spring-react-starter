@@ -1,7 +1,7 @@
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react'
 import Slider from 'react-slick'
 
-const Carousel = ({children}) => {
+const Carousel = ({ children }) => {
     const settings = {
         arrows: false,
         customPaging: () => <button className="c-react-slick__dot"><span /></button>,

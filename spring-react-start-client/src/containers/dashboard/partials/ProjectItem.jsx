@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
+import { Link } from 'react-router-dom'
 import Button from '../../../components/button'
-import {Link} from 'react-router-dom'
 
-import {deleteProject} from '../actions'
+import { deleteProject } from '../actions'
 
 class ProjectItem extends Component {
     render() {
-        const {project, deleteProject} = this.props
+        const { project, deleteProject } = this.props
         return (
             <div className="t-project-item container">
                 <div className="card card-body bg-light mb-3">

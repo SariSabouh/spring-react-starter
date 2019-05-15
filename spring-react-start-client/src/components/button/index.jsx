@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import {onKeyUpWrapper} from '../../utils/a11y-utils'
+import { Link } from 'react-router-dom'
+import { onKeyUpWrapper } from '../../utils/a11y-utils'
 
-import {Link} from 'react-router-dom'
 import Icon from '../icon'
 
 /**
@@ -12,7 +12,6 @@ import Icon from '../icon'
  */
 
 const Button = (props) => {
-
     const {
         // Values
         to,
@@ -51,7 +50,13 @@ const Button = (props) => {
         'u-visually-hidden': !showIconText
     })
     const attrs = {
-        to, id, disabled, name, value, role, onClick,
+        to,
+        id,
+        disabled,
+        name,
+        value,
+        role,
+        onClick,
         onKeyUp: onKeyUpWrapper(onClick),
         className: classes
     }
@@ -88,13 +93,12 @@ const Button = (props) => {
                 <div className={innerClass}>{childrenNodes}</div>
             </Link>
         )
-    } else {
-        return (
-            <button {...attrs} type={type}>
-                <div className={innerClass}>{childrenNodes}</div>
-            </button>
-        )
     }
+    return (
+        <button {...attrs} type={type}>
+            <div className={innerClass}>{childrenNodes}</div>
+        </button>
+    )
 }
 
 Button.defaultProps = {

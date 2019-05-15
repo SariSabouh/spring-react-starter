@@ -1,9 +1,9 @@
 import isEmail from 'validator/lib/isEmail'
 import axios from 'axios'
-import {SubmissionError} from 'redux-form'
+import { SubmissionError } from 'redux-form'
 
 import { setJWTToken } from '../../utils/request-utils'
-import {isUserLoggedIn} from '../../store/user/selectors'
+import { isUserLoggedIn } from '../../store/user/selectors'
 
 const validateForm = (formValues, isRegister) => {
     const errors = {}
@@ -29,7 +29,7 @@ const validateForm = (formValues, isRegister) => {
     if (!password) {
         errors.password = 'Password is required'
     } else if (password.length < 6) {
-        errors.password = "Password needs to be at least 6 characters"
+        errors.password = 'Password needs to be at least 6 characters'
     }
 
     if (isRegister && !confirmPassword) {
@@ -48,16 +48,16 @@ const validateForm = (formValues, isRegister) => {
 const checkLoginStatus = (history) => (dispatch, getStore) => {
     if (isUserLoggedIn(getStore())) {
         history.push('/dashboard')
-        return Promise.resolve()
     }
+    return Promise.resolve()
 }
 
-export const initLogin = ({history}) => (dispatch) => {
+export const initLogin = ({ history }) => (dispatch) => {
     dispatch(checkLoginStatus(history))
     return Promise.resolve()
 }
 
-export const initRegister = ({history}) => (dispatch) => {
+export const initRegister = ({ history }) => (dispatch) => {
     dispatch(checkLoginStatus(history))
     return Promise.resolve()
 }
@@ -70,9 +70,7 @@ export const registerUser = (formValues, history) => (dispatch) => {
 
     return axios.post('/api/users/register', formValues)
         .then(() => history.push('/login'))
-        .catch((err) => {
-            return Promise.reject(new SubmissionError({...err.response.data}))
-        })
+        .catch((err) => Promise.reject(new SubmissionError({ ...err.response.data })))
 }
 
 export const login = (formValues, history) => (dispatch) => {
@@ -82,13 +80,11 @@ export const login = (formValues, history) => (dispatch) => {
     }
 
     return axios.post('/api/users/login', formValues)
-        .then(({data}) => {
+        .then(({ data }) => {
             dispatch(setJWTToken(data.token))
             history.push('/dashboard')
         })
-        .catch((err) => {
-            return Promise.reject(new SubmissionError({...err.response.data}))
-        })
+        .catch((err) => Promise.reject(new SubmissionError({ ...err.response.data })))
 }
 
 export const logout = () => (dispatch) => {

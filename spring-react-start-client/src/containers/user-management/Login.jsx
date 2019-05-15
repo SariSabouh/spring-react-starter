@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+import { createPropsSelector } from 'reselect-immutable-helpers'
 import template from '../../template'
-import {reduxForm} from 'redux-form'
-import {connect} from 'react-redux'
-import {createPropsSelector} from 'reselect-immutable-helpers'
 
 import { LOGIN_FORM } from '../../store/form/constants'
 
@@ -20,12 +20,12 @@ class Login extends Component {
     }
 
     onSubmit(formValues) {
-        const {history, login} = this.props
+        const { history, login } = this.props
         return login(formValues, history)
     }
 
     render() {
-        const {handleSubmit, error} = this.props
+        const { handleSubmit, error } = this.props
 
         return (
             <div className="t-login">

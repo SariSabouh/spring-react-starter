@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
+import { Link } from 'react-router-dom'
 import Button from '../../../components/button'
-import {Link} from 'react-router-dom'
 
-import {deleteProject} from '../actions'
+import { deleteProject } from '../actions'
 
-const ProjecTask = ({projectSequence, summary, acceptanceCriteria, priority, deleteProject, projectIdentifier}) => {
+const ProjecTask = ({ projectSequence, summary, acceptanceCriteria, priority, deleteProject, projectIdentifier }) => {
     let priorityClass = ''
     let priorityString = ''
     if (priority === 1) {

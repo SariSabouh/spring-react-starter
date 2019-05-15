@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 
 import project from './add-project/reducer'
 import projectBoard from './project-board/reducer'

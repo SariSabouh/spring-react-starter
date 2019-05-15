@@ -1,12 +1,10 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { initSession } from './utils/request-utils'
 
-const getDisplayName = (WrappedComponent) => {
-    return WrappedComponent.displayName || WrappedComponent.name || 'Component'
-}
+const getDisplayName = (WrappedComponent) => WrappedComponent.displayName || WrappedComponent.name || 'Component'
 
 const template = (WrappedComponent) => {
     class Template extends React.Component {
@@ -16,7 +14,7 @@ const template = (WrappedComponent) => {
             this.WrappedComponent = WrappedComponent
         }
 
-        dispatchRouteChange({fetchAction, dispatch, history}) {
+        dispatchRouteChange({ fetchAction, dispatch, history }) {
             this.props.initSession(history)
                 .then(() => {
                     if (fetchAction) {

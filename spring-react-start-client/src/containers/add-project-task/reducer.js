@@ -1,11 +1,9 @@
-import {handleActions} from 'redux-actions'
+import { handleActions } from 'redux-actions'
 import Immutable from 'immutable'
-import { setCurrentTask } from './actions';
+import { setCurrentTask } from './actions'
 
 const initialState = Immutable.Map()
 
 export default handleActions({
-    [setCurrentTask]: (state, {payload}) => {
-        return state.mergeDeep(payload)
-    }
+    [setCurrentTask]: (state, { payload }) => state.mergeDeep(payload)
 }, initialState)

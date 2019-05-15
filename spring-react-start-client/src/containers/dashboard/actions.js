@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getProjects } from "../../store/project/actions"
+import { getProjects } from '../../store/project/actions'
 
 import { isUserLoggedIn } from '../../store/user/selectors'
 
@@ -16,4 +16,5 @@ export const deleteProject = (id) => (dispatch) => {
         return axios.delete(`/api/project/${id}`)
             .then(() => dispatch(getProjects()))
     }
+    return false
 }

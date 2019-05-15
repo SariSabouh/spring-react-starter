@@ -3,16 +3,16 @@ import PropTypes from 'prop-types'
 import { reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { createPropsSelector } from 'reselect-immutable-helpers'
+import { Link } from 'react-router-dom'
 import template from '../../template'
 
 import { ADD_PROJECT_FORM_TASK } from '../../store/form/constants'
 
 import Button from '../../components/button'
-import {Link} from 'react-router-dom'
 import FormField from '../../components/form-field'
 
-import {addProjectTask, setCurrentTask} from './actions'
-import { getCurrentTask } from './selectors';
+import { addProjectTask, setCurrentTask } from './actions'
+import { getCurrentTask } from './selectors'
 
 class AddProjectTask extends Component {
     constructor(props) {
@@ -22,17 +22,17 @@ class AddProjectTask extends Component {
     }
 
     componentWillUnmount() {
-        this.props.setCurrentTask({currentTask: null})
+        this.props.setCurrentTask({ currentTask: null })
     }
 
     onSubmit(formValues) {
-        const {history, addProjectTask, match, initialValues} = this.props
+        const { history, addProjectTask, match, initialValues } = this.props
         formValues.isUpdate = initialValues !== null
         return addProjectTask(formValues, match.params.id, history)
     }
 
     render() {
-        const {error, handleSubmit, match} = this.props
+        const { error, handleSubmit, match } = this.props
         return (
             <div className="t-add-project-task">
                 <div className="container">

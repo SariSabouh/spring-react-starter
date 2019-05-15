@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {reduxForm} from 'redux-form'
-import {connect} from 'react-redux'
-import {createPropsSelector} from 'reselect-immutable-helpers'
+import { reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+import { createPropsSelector } from 'reselect-immutable-helpers'
 import template from '../../template'
 
-import {ADD_PROJECT_FORM} from '../../store/form/constants'
+import { ADD_PROJECT_FORM } from '../../store/form/constants'
 
 import Button from '../../components/button'
 import FormField from '../../components/form-field'
 
-import {createProject, setCurrentProject} from './actions'
-import {getCurrentProject} from './selectors'
+import { createProject, setCurrentProject } from './actions'
+import { getCurrentProject } from './selectors'
 
 class AddProject extends Component {
     constructor(props) {
@@ -21,16 +21,16 @@ class AddProject extends Component {
     }
 
     componentWillUnmount() {
-        this.props.setCurrentProject({currentProject: undefined})
+        this.props.setCurrentProject({ currentProject: undefined })
     }
 
     onSubmit(formValues) {
-        const {history, createProject} = this.props
+        const { history, createProject } = this.props
         return createProject(formValues, history)
     }
 
     render() {
-        const {error, handleSubmit, initialValues} = this.props
+        const { error, handleSubmit, initialValues } = this.props
         return (
             <div className="t-add-project">
                 <div className="container">

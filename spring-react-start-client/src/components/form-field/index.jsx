@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Field as ReduxFormField} from 'redux-form'
+import { Field as ReduxFormField } from 'redux-form'
 
 import Field from '../field'
 
-const FormField = ({label, type, name, placeholder, classes, rowClasses, defaultChecked, disabled, children}) => {
+const FormField = ({ label, type, name, placeholder, classes, rowClasses, defaultChecked, disabled, children }) => {
     const inputOptions = {
         type,
         placeholder,

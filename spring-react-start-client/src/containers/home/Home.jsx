@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import { Link } from 'react-router-dom'
 
-export default class Home extends Component {
+export default class Home extends PureComponent {
     render() {
         return (
             <div className="t-home">

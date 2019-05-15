@@ -1,23 +1,23 @@
 import axios from 'axios'
-import {createAction} from 'redux-actions'
-import {SubmissionError} from 'redux-form'
+import { createAction } from 'redux-actions'
+import { SubmissionError } from 'redux-form'
 
-import {isUserLoggedIn} from '../../store/user/selectors'
+import { isUserLoggedIn } from '../../store/user/selectors'
 
-import {getProjectTask} from '../../store/project/actions'
+import { getProjectTask } from '../../store/project/actions'
 
 export const setCurrentTask = createAction('Receive Current Task')
 
 export const initAddProjectTask = (routeProps) => (dispatch, getStore) => {
-    const {match, history} = routeProps
+    const { match, history } = routeProps
     if (!isUserLoggedIn(getStore())) {
         history.push('/login')
     } else {
-        const {id, sequence} = match.params
+        const { id, sequence } = match.params
         id && sequence &&
             dispatch(getProjectTask(id, sequence))
-                .then((task) => dispatch(setCurrentTask({currentTask: task})))
-                .catch((e) => history.push('/dashboard'))
+                .then((task) => dispatch(setCurrentTask({ currentTask: task })))
+                .catch(() => history.push('/dashboard'))
     }
     return Promise.resolve()
 }
@@ -46,13 +46,9 @@ export const addProjectTask = (formValues, backlogId, history) => (dispatch) => 
     if (formValues.isUpdate) {
         return axios.patch(`/api/backlog/${backlogId}/${formValues.projectSequence}`, formValues)
             .then(() => history.push(`/projectBoard/${backlogId}`))
-            .catch((err) => {
-                return Promise.reject(new SubmissionError({...err.response.data}))
-            })
+            .catch((err) => Promise.reject(new SubmissionError({ ...err.response.data })))
     }
     return axios.post(`/api/backlog/${backlogId}`, formValues)
         .then(() => history.push(`/projectBoard/${backlogId}`))
-        .catch((err) => {
-            return Promise.reject(new SubmissionError({...err.response.data}))
-        })
+        .catch((err) => Promise.reject(new SubmissionError({ ...err.response.data })))
 }
