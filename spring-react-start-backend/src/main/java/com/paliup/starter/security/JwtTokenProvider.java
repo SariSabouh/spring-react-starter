@@ -38,6 +38,8 @@ public class JwtTokenProvider {
 		claims.put("fullName", user.getFullName());
 		// For roles, you can add as well to claims for easy access
 		
+		logger.debug("Build token for: userId: " + userId + " | username: " + user.getUsername() + " | fullName: " + user.getFullName() +
+				" | issuedIn: " + now + " | expires in: " + expiryDate);
 		return Jwts.builder()
 				.setSubject(userId)
 				.setClaims(claims)
@@ -50,6 +52,7 @@ public class JwtTokenProvider {
 	public boolean validateToken(String token) {
 		try {
 			Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token);
+			logger.info("Token validated");
 			return true;
 		} catch(SignatureException ex) {
 			logger.warn("Invalid JWT Signature");

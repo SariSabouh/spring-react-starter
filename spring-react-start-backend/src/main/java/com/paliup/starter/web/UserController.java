@@ -4,6 +4,8 @@ import static com.paliup.starter.security.SecurityConstants.TOKEN_PREFIX;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +31,8 @@ import com.paliup.starter.validator.UserValidator;
 @RequestMapping("api/users")
 public class UserController {
 	
+	Logger logger = LoggerFactory.getLogger(UserController.class);
+	
 	@Autowired
 	private UserService userService;
 	
@@ -46,17 +50,20 @@ public class UserController {
 
 	@PostMapping("/register")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result) {
+		logger.info("POST Request was made to '/api/users/register' to register new user");
 		userValidator.validate(user, result);
 
 		ResponseEntity<?> errorMap = mapValidationErrorService.mapValidationService(result);
 		if (errorMap != null) return errorMap;
 
 		User newUser = userService.saveUser(user);
+		logger.info("User registered succesffully");
 		return new ResponseEntity<User>(newUser , HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result) {
+		logger.info("POST Request was made to '/api/users/login' to authenticate user");
 		ResponseEntity<?> errorMap = mapValidationErrorService.mapValidationService(result);
 		if (errorMap != null) return errorMap;
 		
@@ -68,6 +75,7 @@ public class UserController {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = TOKEN_PREFIX + tokenProvider.generateToken(authentication);
 		
+		logger.info("User authenticated succesffully");
 		return ResponseEntity.ok(new JWTLoginSuccessResponse(true, jwt));
 	}
 

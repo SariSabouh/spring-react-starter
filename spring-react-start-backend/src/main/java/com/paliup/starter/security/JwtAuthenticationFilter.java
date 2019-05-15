@@ -39,7 +39,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		
 		if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(TOKEN_PREFIX)) {
 			logger.info("Found Bearer Token");
-			logger.debug("Bearer Token: " + bearerToken); //TODO: Seperate log export files
+			logger.debug("Bearer Token: " + bearerToken);
 			return bearerToken.substring(7);
 		}
 		
@@ -59,6 +59,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetals, null, Collections.emptyList());
 				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 				SecurityContextHolder.getContext().setAuthentication(authentication);
+				logger.info("User " + userId + " authenticated");
 			}
 		} catch(Exception ex) {
 			logger.error("Could not set user authenitcation in security context");
