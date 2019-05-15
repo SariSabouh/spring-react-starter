@@ -11,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,6 +24,8 @@ import com.paliup.starter.domain.User;
 import com.paliup.starter.services.CustomUserDetailsService;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
+	
+	private Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
 
 	@Autowired
 	private JwtTokenProvider tokenProvider;
@@ -34,6 +38,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		String bearerToken = request.getHeader(HEADER_STRING);
 		
 		if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(TOKEN_PREFIX)) {
+			logger.info("Found Bearer Token");
+			logger.debug("Bearer Token: " + bearerToken); //TODO: Seperate log export files
 			return bearerToken.substring(7);
 		}
 		

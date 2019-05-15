@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +24,8 @@ import io.jsonwebtoken.UnsupportedJwtException;
 
 @Component
 public class JwtTokenProvider {
+	
+	private Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
 
 	public String generateToken(Authentication authentication) {
 		User user = (User) authentication.getPrincipal();
@@ -48,15 +52,15 @@ public class JwtTokenProvider {
 			Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token);
 			return true;
 		} catch(SignatureException ex) {
-			System.out.println("Invalid JWT Signature"); // TODO Replace with Log4J
+			logger.warn("Invalid JWT Signature");
 		} catch(MalformedJwtException ex) {
-			System.out.println("Invalid JWT Token");
+			logger.warn("Invalid JWT Token");
 		} catch(ExpiredJwtException ex) {
-			System.out.println("Expired JWT Token");
+			logger.warn("Expired JWT Token");
 		} catch(UnsupportedJwtException ex) {
-			System.out.println("Unsupported JWT Token");
+			logger.warn("Unsupported JWT Token");
 		} catch(IllegalArgumentException ex) {
-			System.out.println("JWT cleaims string is empty");
+			logger.warn("JWT cleaims string is empty");
 		}
 		
 		return false;
