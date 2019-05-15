@@ -1,0 +1,72 @@
+// Typography
+// ===
+
+// Headers
+// ---
+
+// Text Elements
+// ---
+
+p {
+    margin: 0;
+}
+
+a {
+    color: $link-color;
+    text-decoration: none;
+
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+    color: #fac564;
+
+    &:active,
+    &:focus {
+        color: $active-link-color;
+    }
+
+    &:hover {
+        background-color: initial;
+        color: $link-color;
+    }
+}
+
+b,
+strong {
+    font-weight: $bold-font-weight;
+}
+
+small {
+    font-size: 80%;
+}
+
+
+// Miscellaneous Elements
+// ---
+//
+// 1. Address differences between Firefox and other browsers.
+// 2. Required in order for images to maintain their aspect ratio
+
+hr {
+    box-sizing: content-box; // 1
+    height: 0; // 1
+    margin: ($unit * 2) 0;
+    border: $border;
+    border-width: 0 0 1px;
+
+    -moz-box-sizing: content-box; // 1
+}
+
+img {
+    max-width: 100%;
+    height: auto; // 2
+    margin: 0;
+}
+
+blockquote {
+    margin: ($unit * 2) 0;
+    padding-left: $unit;
+    border-left: 2px solid $border-color;
+
+    color: lighten($neutral-90, 15);
+}

@@ -1,0 +1,17 @@
+// SkeletonBlock root
+// ---
+//
+// A skeleton component that can be used to mimic block-level elements, such as images or DIVs.
+
+.c-skeleton-block {
+    max-width: 100%;
+
+    background: $neutral-10;
+
+    background: $neutral-30;
+    background-image: -webkit-linear-gradient(left, $neutral-30, scale-color($neutral-30, $lightness: -5%) 20%, $neutral-30 40%, $neutral-30);
+    background-repeat: no-repeat;
+    background-size: 600% 600%;
+
+    animation: 2.5s linear infinite forwards background-shimmer;
+}

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Header from '../header/Header'

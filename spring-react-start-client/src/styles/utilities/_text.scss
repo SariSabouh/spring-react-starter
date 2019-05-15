@@ -1,0 +1,303 @@
+// Text utils
+// ===
+
+
+// Font-Family
+// ---
+
+.u-text-family {
+    font-family: $font-family;
+}
+
+.u-text-family-header {
+    font-family: $header-font-family;
+
+    // Added with webfontloader. See loadFonts() in app/container.js
+    .wf-active & {
+        font-family: $loaded-header-font-family;
+    }
+}
+
+.u-text-family-loaded {
+    font-family: $loaded-header-font-family;
+}
+
+.u-text-family-miller-italic {
+    font-family: "MillerDisplay LightItalic";
+}
+
+.u-text-family-miller {
+    font-family: "MillerDisplay Light";
+}
+
+
+// Weights & Style
+// ---
+
+.u-text-weight-light {
+    font-weight: $light-font-weight;
+}
+
+.u-text-weight-regular {
+    font-weight: $regular-font-weight;
+}
+
+.u-text-weight-bold {
+    font-weight: $bold-font-weight;
+}
+
+.u-text-style-italic {
+    font-style: italic;
+}
+
+.u-text-style-normal {
+    font-style: normal;
+}
+
+.u-text-quiet {
+    color: $neutral-50;
+    font-size: $small-font-size;
+
+    fill: $neutral-50;
+}
+
+
+// Size
+// ---
+
+.u-text-size-smaller {
+    font-size: $smaller-font-size;
+}
+
+.u-text-size-small-medium {
+    font-size: $small-font-medium;
+}
+
+.u-text-size-small {
+    font-size: $small-font-size;
+}
+
+.u-text-size-medium {
+    font-size: $small-font-size;
+}
+
+.u-text-size-base {
+    font-size: $medium-font-size;
+}
+
+.u-text-size-big {
+    font-size: $big-font-size;
+}
+
+.u-text-size-bigger {
+    font-size: $bigger-font-size;
+}
+
+.u-text-size-xbigger {
+    font-size: $xbigger-font-size;
+}
+
+
+
+
+// Line Height
+// ---
+
+.u-text-height-0 {
+    line-height: 0;
+}
+
+.u-text-height-single {
+    line-height: 1;
+}
+
+.u-text-height-tiny {
+    line-height: $tiny-line-height;
+}
+
+.u-text-height-smaller {
+    line-height: $smaller-line-height;
+}
+
+.u-text-height-small {
+    line-height: $small-line-height;
+}
+
+.u-text-height-base {
+    line-height: $line-height;
+}
+
+.u-text-height-big {
+    line-height: $big-line-height;
+}
+
+.u-text-height-bigger {
+    line-height: $bigger-line-height;
+}
+
+
+
+// Letter Spacing
+// ---
+
+.u-text-letter-spacing-small {
+    letter-spacing: 1px;
+}
+
+.u-text-letter-spacing-medium {
+    letter-spacing: 2px;
+}
+
+.u-text-letter-spacing-large {
+    letter-spacing: 4px;
+}
+
+.u-text-letter-spacing-normal {
+    letter-spacing: normal;
+}
+
+
+// Text Alignment
+// ---
+
+.u-text-align-start {
+    text-align: left;
+}
+
+.u-text-align-center {
+    text-align: center;
+}
+
+.u-text-align-end {
+    text-align: right;
+}
+
+.u-text-align-justify {
+    text-align: justify;
+}
+
+.u-text-align-middle {
+    vertical-align: middle;
+}
+
+.u-text-align-baseline {
+    vertical-align: baseline;
+}
+
+.u-text-align-super {
+    vertical-align: super;
+}
+
+.u-text-align-bottom {
+    vertical-align: bottom;
+}
+
+.u-text-align-top {
+    vertical-align: top;
+}
+
+.u-text-align-text-top {
+    vertical-align: text-top;
+}
+
+
+// All Caps
+// ---
+//
+// Set text uppercase, letterspaced for legibility.
+
+.u-text-uppercase {
+    text-transform: uppercase;
+}
+
+
+// Capitalize Text
+// ---
+//
+// Capitalize first letter of string.
+
+.u-text-capitalize {
+    text-transform: capitalize;
+}
+
+
+// Lowercase Text
+// ---
+//
+// Lowercase all text in string.
+
+.u-text-lowercase {
+    text-transform: lowercase;
+}
+
+
+// No Transform Text
+// ---
+//
+// Remove text transform
+
+.u-text-no-transform {
+    text-transform: none;
+}
+
+
+// Underline Text
+// ---
+//
+// Underline all text in string.
+
+.u-text-underline {
+    text-decoration: underline;
+}
+
+
+// Decoration
+// ---
+
+.u-text-decoration-none {
+    text-decoration: none;
+}
+
+
+// Truncate text
+// ---
+//
+// For one-line truncate, use .u-trancate
+// while for multi-lines, use the webkit's line-clamp ones.
+//
+// 1. needs autoprefixer to be turned off, so the property will get copied over
+//    to the final css.
+
+.u-truncate {
+    overflow: hidden;
+    max-width: 100%;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.u-no-wrap {
+    white-space: nowrap;
+}
+
+.u-text-clamp-2,
+.u-text-clamp-3 {
+    overflow: hidden;
+}
+
+.u-text-clamp-2 {
+    height: $size-xl;
+}
+
+.u-text-clamp-3 {
+    height: $size-xxl;
+}
+
+.u-text-center-link {
+    display: block;
+
+    color: $neutral-90;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+}

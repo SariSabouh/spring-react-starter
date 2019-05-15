@@ -16,4 +16,6 @@ public class StarterApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(StarterApplication.class, args);
 	}
+	
+	// TODO: Circle CI automated tests for backend and frontend
 }

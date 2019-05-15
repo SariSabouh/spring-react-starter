@@ -1,0 +1,300 @@
+// Project-Wide Variables
+// ===
+//
+// Edit these as needed. Some guidelines:
+//
+// - Names should be lowercase and dash-separated;
+// - Qualifiers should be added to the beginning of related variables: use
+//   `$small-font-size`, not `$font-size-small`;
+// - Numeric scales should use increments of 10; these numbers are arbitrary and
+//   should not map to actual values. If really necessary, additional values can
+//   be added in between, e.g. $body-color between 10 and 20.
+//
+//
+// Table of Contents
+// ---
+//
+// **Pro Tip** use the letters in brackets (for example, highlight [ZZZ] and use
+// the `select-next` command: cmd-d in some editors) as a shortcut to
+// that section!
+//
+//     [AAA] Basic Layout
+//     [BBB] Breakpoints
+//     [CCC] Typography
+//     [DDD] Color Palette
+//     [EEE] Appearance
+//     [FFF] Layer (z-index)
+//     [GGG] Shorthands
+//     [HHH] Grid
+//     [III] Background-Image Icons
+
+
+// [AAA] Basic Layout
+// ---
+
+// Basic unit for spacing and alignment; 6 to 12px recommended. Apply in whole
+// or half multiples. I had to keep $unit as 8px because a lot of the sdk is expecting an 8px;
+$unit: 8px;
+$sub-unit: ($unit / 2);
+
+// Standard tap-target size
+$tap-size: ($unit * 6);
+$small-tap-size: ($unit * 5.5);
+
+// Container max-width.
+$max-width: ($unit * 150);
+
+// Site header height
+$header-bar-height: ($unit * 10); // 80px
+$header-categories-height: ($sub-unit * 11); // 44px
+$header-height: ($header-bar-height + $header-categories-height);
+
+// Sizes
+$size-xxs: ($unit / 2);    // 4px
+$size-xs: ($unit * 1);     // 8px
+$size-sm: ($unit * 1.5);   // 12px
+$size-md: ($unit * 2);     // 16px
+$size-lg: ($unit * 3);     // 24px
+$size-xl: ($unit * 4);     // 32px
+$size-xxl: ($unit * 8);    // 64px
+$size-xxxl: ($unit * 10);  // 80px
+
+// [BBB] Breakpoints
+// ---
+//
+// Breakpoints for media queries. It's worth noting that the `mobile`, `tablet`
+// and `desktop` key words do **not** refer to the devices themselves. Instead,
+// it refers to their approximate screen sizes.
+//
+// For example: a mobile device in landscape mode can bust through into the
+// tablet's breakpoint, and tablet in landscape into desktop's.
+//
+// Therefor, use these keywords as guidelines rather than gospel.
+$mobile-breakpoint: (
+    min-width: 0,
+    max-width: 419px // Avoid colliding with 420px breakpoint
+);
+$tablet-breakpoint: (
+    min-width: 420px,
+    max-width: 1023px // Avoid colliding with 1024px breakpoint
+);
+$desktop-breakpoint: (
+    min-width: 1024px
+);
+
+
+// [CCC] Typography
+// ---
+
+// Font Family // TODO
+$system-font: -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+$font-family: $system-font;
+$engraving-font-family: EngravingGreatVibes, Arial, sans-serif;
+$header-font-family: $system-font;
+$loaded-header-font-family: $system-font;
+
+// Font sizes
+$xbigger-font-size: $size-xl;
+$bigger-font-size: $size-lg;
+$big-font-size: $size-md + $sub-unit;
+$medium-font-size: $size-md;
+$small-font-size: $size-sm;
+$small-font-medium: ($size-sm + 2);
+$smaller-font-size: ($size-xs + 2);
+
+// Font Weights
+$light-font-weight: 300;
+$regular-font-weight: 400;
+$bold-font-weight: 700;
+
+// Line heights (or leading)
+$extra-huge-line-height: 48px;
+$bigger-line-height: $size-xl;
+$big-line-height: $size-lg;
+$line-height: 20px; // TODO: variable?
+$small-line-height: $size-md;
+$smaller-line-height: $size-sm;
+$tiny-line-height: $size-xs;
+
+// [DDD] Color Palette
+
+// ---
+
+// Neutrals
+$neutral-10: #fff;     // White
+$neutral-30: #ccc;     // Light Grey;
+$neutral-50: #aaa;     // Mid Grey
+$neutral-70: #121618;  // Dark Grey
+$neutral-75: #7e7c7c;
+$neutral-90: #000;     // Black
+
+// Body Color
+$body-color: #fff; // Grey
+
+// Divider Color
+$divider-color: #7e7e7e;
+
+// Brand colors
+$brand-color: #20396C;
+$secondary-brand-color: $brand-color;
+$tertiary-brand-color: $brand-color;
+
+// Accent colors
+$accent-color: #20396C;
+$light-accent-color: lighten($accent-color, 15%);
+$dark-accent-color: darken($accent-color, 15%);
+
+// Primary Action
+$primary-action-color: $accent-color;
+$light-primary-action-color: lighten($primary-action-color, 15%);
+$dark-primary-action-color: darken($primary-action-color, 15%);
+
+// Secondary Action
+$secondary-action-color: $neutral-90;
+$light-secondary-action-color: lighten($secondary-action-color, 15%);
+$dark-secondary-action-color: darken($secondary-action-color, 15%);
+
+// Success colors
+$success-color: #009425;
+$light-success-color: lighten($success-color, 15%);
+$dark-success-color: darken($success-color, 15%);
+
+// Error colors
+$error-color: #bd0623;
+$light-error-color: lighten($error-color, 15%);
+$dark-error-color: darken($error-color, 15%);
+
+// Sale color
+$sale-color: $error-color;
+
+// Social colors
+$google-plus-color: #dd4b39;
+$instagram-color: #405de6;
+$pinterest-color: #bd081c;
+$facebook-color: #3b5998;
+$youtube-color: #e52d27;
+$twitter-color: #55aace;
+$yelp-color: #af0606;
+
+// [EEE] Appearance
+// ---
+$link-color: $brand-color;
+$active-link-color: $dark-accent-color;
+
+$focus-color: $accent-color;
+
+$border-color: $neutral-30;
+$border-radius: ($sub-unit / 2);
+$input-background-color: $neutral-10;
+
+$input-border-color: $border-color;
+$focused-input-border-color: $neutral-70;
+$disabled-input-color: $neutral-70;
+$disabled-input-background-color: $body-color;
+$disabled-button-background-color: $body-color;
+
+$horizontal-input-padding: $size-sm;
+$vertical-input-padding: $size-sm;
+$overlay-color: rgba($neutral-90, 0.85);
+
+
+// [FFF] Layer (z-index)
+// ---
+
+// Organizes z-index usage by name. Values can be incremented/decremented
+// slightly as necessary. eg. $z1-layer + 1;
+
+$z1-depth: 1;    // background
+$z2-depth: 10;   // icon or other ui element
+$z3-depth: 100;  // modal shade or similar
+$z4-depth: 1000; // modal dialog or similar
+
+
+// [GGG] Shorthands
+// ---
+//
+// Quick ways to write properties that you re-use often.
+
+$border: 1px solid $border-color;
+$light-border: 1px solid $body-color;
+$input-padding: $vertical-input-padding $horizontal-input-padding;
+
+$box-shadow: 0 1px 3px rgba($neutral-90, 0.25);
+$large-box-shadow: 0 2px 4px 0 rgba($neutral-90, 0.25);
+$inset-box-shadow: inset 0 2px 2px -2px rgba($neutral-90, 0.25), inset 0 -2px 2px -2px rgba($neutral-90, 0.25);
+$input-box-shadow: inset 0 0 5px 0 rgba($neutral-90, 0.25);
+$box-shadow-sm: 0 1px 2px 0 rgba($neutral-90, 0.15);
+
+$size-md: $sub-unit*4; // 16px
+$size-lg: $sub-unit*6; // 24px
+
+// [HHH] Grid
+// ---
+//
+// The scaffold is setup to use Susy as its grid framework of choice! For
+// complete details and documentation, visit their website below:
+// @URL: http://susydocs.oddbird.net/en/latest/
+
+// Grid columns. The width isn't a terribly strict value because the columns are
+// fluid in width. However, they are important for at least providing Susy
+// with a column to gutter ratio. See here for details:
+//
+// @URL: https://github.com/oddbird/susy/issues/347#issuecomment-218555316
+$mobile-column-count: 4;
+$mobile-column-width: 92px;
+
+$tablet-column-count: 8;
+$tablet-column-width: 72px;
+
+$desktop-column-count: 12;
+$desktop-column-width: 76px;
+
+// Grid gutter variables. These are the relevant and important values!
+$mobile-gutters: $unit * 1.5; // 12px
+$tablet-gutters: $unit * 3;   // 24px
+$desktop-gutters: $unit * 3;  // 24px
+
+// Susy layout contexts are necessary for when writing media queries for
+// different breakpoints, while also having the correct grid layout context
+// set for that breakpoint. In the below example, a span of 4 is full width in
+// mobile layouts, which has a total of 4 columns:
+//
+//     @include susy-breakpoint($mobile-breakpoint, $mobile-layout) {
+//         .t-page__grid-cell {
+//             @include span(4);
+//         }
+//     }
+//
+// On the flip side, in the next example, a span of 4 is half width in tablet
+// layouts, which has a total of 8 columns:
+//
+//     @include susy-breakpoint($tablet-breakpoint, $tablet-layout) {
+//         .t-page__grid-cell {
+//             @include span(4);
+//         }
+//     }
+$mobile-layout: $mobile-column-count ($mobile-column-width $mobile-gutters) $mobile-column-width fluid inside-static;
+$tablet-layout: $tablet-column-count ($tablet-column-width $tablet-gutters) $tablet-column-width fluid inside-static;
+$desktop-layout: $desktop-column-count ($desktop-column-width $desktop-gutters) $desktop-column-width fluid inside-static;
+// We choose to use fluid math so columns can be responsive, and inside-static
+// for our gutter positioning so the gutters can be static width. For more
+// details on the layout system, see Susy's documentation here:
+//
+// @URL: http://susydocs.oddbird.net/en/latest/settings/#layout
+
+
+// Background-Image Icons
+// ---
+//
+// 1. Moved from forms.scss; see https://github.com/mobify/lancome/pull/401
+//
+// $base__radio-checkmark: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000"><path d="M18.8 6l-9.1 9.2-4.3-4.3L4 12.3 9.7 18 20.2 7.4z"/></svg>'; // 1
+
+$checkmark-icon: 'data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fill="#{$neutral-10}" d="M6.554 12.854c.018.015.03.035.048.049.027.018.058.022.087.035a.64.64 0 0 0 .105.042c.035.009.07.013.106.016a.609.609 0 0 0 .153-.002c.02-.003.04-.009.062-.014a.632.632 0 0 0 .178-.075l.028-.02c.037-.026.077-.045.109-.08.022-.025.032-.057.05-.084.002 0 .003-.002.003-.003l5.413-8.728a.642.642 0 0 0-.184-.885.633.633 0 0 0-.88.185l-5 8.061-2.765-2.706a.632.632 0 0 0-.898.035.642.642 0 0 0 .035.904L6.53 12.84c.007.006.016.008.024.014z"/></svg>';
+
+$like-icon: 'data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M15.433 8.966c.361-.409.567-1.084.567-1.727 0-.425-.094-.797-.272-1.076a1.196 1.196 0 0 0-1.042-.563h-2.137c1.163-2.073 1.457-3.634.873-4.646C13.015.25 12.27 0 11.754 0a.405.405 0 0 0-.404.346c-.146 1.056-.97 2.315-2.259 3.455a12.74 12.74 0 0 1-4.313 2.487 1.227 1.227 0 0 0-1.106-.687H1.224A1.212 1.212 0 0 0 0 6.8V14c0 .66.55 1.199 1.224 1.199h2.448c.517 0 .96-.316 1.139-.762 1.6.197 2.202.512 2.786.818.73.382 1.418.744 3.674.744.587 0 1.14-.15 1.558-.423.408-.267.67-.64.756-1.075.325-.13.614-.428.835-.873.216-.433.355-.986.355-1.409 0-.079-.005-.152-.014-.219.207-.149.392-.378.545-.68a3.4 3.4 0 0 0 .352-1.461c0-.34-.064-.622-.19-.841a2.966 2.966 0 0 0-.033-.052l-.002-.001zM3.67 14.399H1.222a.404.404 0 0 1-.408-.4V6.8c0-.22.183-.4.408-.4H3.67c.225 0 .408.18.408.4V14c0 .221-.183.4-.408.4zm11.292-6.18c-.123.243-.248.331-.302.331a.404.404 0 0 0-.408.4c0 .22.183.4.408.4.034 0 .059 0 .096.062.054.094.085.256.085.447 0 .356-.103.779-.268 1.105-.162.32-.326.435-.397.435a.404.404 0 0 0-.408.4.4.4 0 0 0 .188.338c.025.254-.095.932-.409 1.374-.118.168-.243.264-.34.264a.404.404 0 0 0-.409.4c0 .703-.793 1.024-1.53 1.024-2.05 0-2.625-.3-3.29-.65-.621-.325-1.32-.691-3.085-.906v-6.55a13.566 13.566 0 0 0 4.743-2.698c1.3-1.149 2.153-2.39 2.443-3.54a1.1 1.1 0 0 1 .633.494c.272.472.476 1.676-1.219 4.445a.393.393 0 0 0-.004.403.41.41 0 0 0 .355.203h2.842c.162 0 .266.056.35.188.096.15.148.381.148.652 0 .339-.083.705-.222.98v-.001z"/></svg>';
+
+$dislike-icon: 'data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M.567 7.034C.206 7.443 0 8.118 0 8.761c0 .425.094.797.272 1.076.231.363.602.563 1.042.563h2.137c-1.163 2.073-1.457 3.634-.873 4.646.407.704 1.153.954 1.668.954a.405.405 0 0 0 .404-.346c.146-1.056.97-2.315 2.259-3.455a12.74 12.74 0 0 1 4.313-2.487c.196.406.618.687 1.106.687h2.448c.675 0 1.224-.538 1.224-1.2V2c0-.66-.55-1.2-1.224-1.2h-2.448c-.517 0-.96.316-1.139.762-1.6-.197-2.202-.512-2.786-.818C7.673.362 6.985 0 4.73 0c-.587 0-1.14.15-1.558.423-.408.267-.67.64-.756 1.075-.325.13-.614.428-.835.873-.216.433-.355.986-.355 1.409 0 .079.005.152.014.219-.207.149-.392.378-.545.68A3.4 3.4 0 0 0 .342 6.14c0 .34.064.622.19.841l.033.052.002.001zM12.33 1.601h2.448c.225 0 .408.179.408.4v7.2c0 .22-.183.4-.408.4H12.33a.404.404 0 0 1-.408-.4V2c0-.221.183-.4.408-.4zM1.038 7.78c.123-.243.248-.331.302-.331.225 0 .408-.18.408-.4 0-.22-.183-.4-.408-.4-.034 0-.059 0-.096-.062-.054-.094-.085-.256-.085-.447 0-.356.103-.779.268-1.105.162-.32.326-.435.397-.435.226 0 .408-.18.408-.4a.399.399 0 0 0-.188-.338c-.025-.254.095-.932.409-1.374.118-.168.243-.264.34-.264a.404.404 0 0 0 .409-.4c0-.703.793-1.024 1.53-1.024 2.05 0 2.625.3 3.29.65.621.325 1.32.691 3.085.906v6.55a13.566 13.566 0 0 0-4.743 2.698c-1.3 1.149-2.153 2.39-2.443 3.54a1.1 1.1 0 0 1-.633-.494c-.272-.472-.476-1.676 1.219-4.445a.393.393 0 0 0 .004-.403.41.41 0 0 0-.355-.203H1.314a.374.374 0 0 1-.35-.188c-.096-.15-.148-.381-.148-.652 0-.339.083-.705.222-.98v.001z"/></svg>';
+
+$dislike-icon-accent: 'data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fill="#ca006a" d="M.567 7.034C.206 7.443 0 8.118 0 8.761c0 .425.094.797.272 1.076.231.363.602.563 1.042.563h2.137c-1.163 2.073-1.457 3.634-.873 4.646.407.704 1.153.954 1.668.954a.405.405 0 0 0 .404-.346c.146-1.056.97-2.315 2.259-3.455a12.74 12.74 0 0 1 4.313-2.487c.196.406.618.687 1.106.687h2.448c.675 0 1.224-.538 1.224-1.2V2c0-.66-.55-1.2-1.224-1.2h-2.448c-.517 0-.96.316-1.139.762-1.6-.197-2.202-.512-2.786-.818C7.673.362 6.985 0 4.73 0c-.587 0-1.14.15-1.558.423-.408.267-.67.64-.756 1.075-.325.13-.614.428-.835.873-.216.433-.355.986-.355 1.409 0 .079.005.152.014.219-.207.149-.392.378-.545.68A3.4 3.4 0 0 0 .342 6.14c0 .34.064.622.19.841l.033.052.002.001zM12.33 1.601h2.448c.225 0 .408.179.408.4v7.2c0 .22-.183.4-.408.4H12.33a.404.404 0 0 1-.408-.4V2c0-.221.183-.4.408-.4zM1.038 7.78c.123-.243.248-.331.302-.331.225 0 .408-.18.408-.4 0-.22-.183-.4-.408-.4-.034 0-.059 0-.096-.062-.054-.094-.085-.256-.085-.447 0-.356.103-.779.268-1.105.162-.32.326-.435.397-.435.226 0 .408-.18.408-.4a.399.399 0 0 0-.188-.338c-.025-.254.095-.932.409-1.374.118-.168.243-.264.34-.264a.404.404 0 0 0 .409-.4c0-.703.793-1.024 1.53-1.024 2.05 0 2.625.3 3.29.65.621.325 1.32.691 3.085.906v6.55a13.566 13.566 0 0 0-4.743 2.698c-1.3 1.149-2.153 2.39-2.443 3.54a1.1 1.1 0 0 1-.633-.494c-.272-.472-.476-1.676 1.219-4.445a.393.393 0 0 0 .004-.403.41.41 0 0 0-.355-.203H1.314a.374.374 0 0 1-.35-.188c-.096-.15-.148-.381-.148-.652 0-.339.083-.705.222-.98v.001z"/></svg>';
+$like-icon-accent: 'data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fill="#ca006a" d="M15.433 8.966c.361-.409.567-1.084.567-1.727 0-.425-.094-.797-.272-1.076a1.196 1.196 0 0 0-1.042-.563h-2.137c1.163-2.073 1.457-3.634.873-4.646C13.015.25 12.27 0 11.754 0a.405.405 0 0 0-.404.346c-.146 1.056-.97 2.315-2.259 3.455a12.74 12.74 0 0 1-4.313 2.487 1.227 1.227 0 0 0-1.106-.687H1.224A1.212 1.212 0 0 0 0 6.8V14c0 .66.55 1.199 1.224 1.199h2.448c.517 0 .96-.316 1.139-.762 1.6.197 2.202.512 2.786.818.73.382 1.418.744 3.674.744.587 0 1.14-.15 1.558-.423.408-.267.67-.64.756-1.075.325-.13.614-.428.835-.873.216-.433.355-.986.355-1.409 0-.079-.005-.152-.014-.219.207-.149.392-.378.545-.68a3.4 3.4 0 0 0 .352-1.461c0-.34-.064-.622-.19-.841a2.966 2.966 0 0 0-.033-.052l-.002-.001zM3.67 14.399H1.222a.404.404 0 0 1-.408-.4V6.8c0-.22.183-.4.408-.4H3.67c.225 0 .408.18.408.4V14c0 .221-.183.4-.408.4zm11.292-6.18c-.123.243-.248.331-.302.331a.404.404 0 0 0-.408.4c0 .22.183.4.408.4.034 0 .059 0 .096.062.054.094.085.256.085.447 0 .356-.103.779-.268 1.105-.162.32-.326.435-.397.435a.404.404 0 0 0-.408.4.4.4 0 0 0 .188.338c.025.254-.095.932-.409 1.374-.118.168-.243.264-.34.264a.404.404 0 0 0-.409.4c0 .703-.793 1.024-1.53 1.024-2.05 0-2.625-.3-3.29-.65-.621-.325-1.32-.691-3.085-.906v-6.55a13.566 13.566 0 0 0 4.743-2.698c1.3-1.149 2.153-2.39 2.443-3.54a1.1 1.1 0 0 1 .633.494c.272.472.476 1.676-1.219 4.445a.393.393 0 0 0-.004.403.41.41 0 0 0 .355.203h2.842c.162 0 .266.056.35.188.096.15.148.381.148.652 0 .339-.083.705-.222.98v-.001z"/></svg>';

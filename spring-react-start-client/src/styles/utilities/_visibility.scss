@@ -1,0 +1,12 @@
+// Visibility Utils
+// ===
+//
+// Remove from flow but leave available to screen readers.
+
+.u-visually-hidden {
+    @include visually-hidden;
+}
+
+.u-visbilitiy-hidden {
+    visibility: hidden;
+}

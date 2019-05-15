@@ -1,0 +1,97 @@
+// Border
+// ===
+
+// Border (Width and Color)
+// ---
+
+.u-border {
+    border: $border;
+}
+
+.u-border-0 {
+    border: 0;
+}
+
+.u-border-top-0 {
+    border-top: 0;
+}
+
+.u-border-bottom-0 {
+    border-bottom: 0;
+}
+
+.u-border-top {
+    border-top: $border;
+}
+
+.u-border-end {
+    border-right: $border;
+}
+
+.u-border-bottom {
+    border-bottom: $border;
+}
+
+.u-border-start {
+    border-left: $border;
+}
+
+
+// Light Border (Width and Color)
+// ---
+
+.u-border-light {
+    border: $light-border;
+}
+
+.u-border-light-top {
+    border-top: $light-border;
+}
+
+.u-border-light-end {
+    border-right: $light-border;
+}
+
+.u-border-light-bottom {
+    border-bottom: $light-border;
+}
+
+.u-border-light-start {
+    border-left: $light-border;
+}
+
+
+// Border (Other)
+// ---
+
+.u-border-accent {
+    border: 1px solid $accent-color;
+}
+
+.u-border-dark {
+    border: 1px solid #444;
+}
+
+.u-border-dark-bottom {
+    border-bottom: 1px solid #444;
+}
+
+.u-border-radius {
+    border-radius: $border-radius;
+}
+
+.u-border-radius-0 {
+    border-radius: 0;
+}
+
+.u-border-thick {
+    border-width: 2px;
+}
+
+.u-border-radius-circle {
+    border-radius: 100%;
+}
+
+.u-border-white {
+    border: 1px solid $neutral-10;
+}
