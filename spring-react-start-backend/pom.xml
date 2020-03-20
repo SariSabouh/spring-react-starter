@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.paliup</groupId>
-	<artifactId>start</artifactId>
+	<artifactId>starter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>starter</name>
 	<description>This is a starter project</description>
