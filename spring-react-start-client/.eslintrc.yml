@@ -42,3 +42,4 @@ rules:
     - error
     - exceptMethods: ['render']
   no-console: 'off'
+  import/extensions: 'off'

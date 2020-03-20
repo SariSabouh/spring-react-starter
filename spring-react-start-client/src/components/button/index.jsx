@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import { Link } from 'react-router-dom'
-import { onKeyUpWrapper } from '../../utils/a11y-utils'
+import { onKeyUpWrapper } from 'utils/a11y-utils'
 
 import Icon from '../icon'
 

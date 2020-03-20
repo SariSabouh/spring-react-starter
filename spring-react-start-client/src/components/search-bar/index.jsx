@@ -4,10 +4,10 @@ import * as ReduxForm from 'redux-form'
 import { injectIntl } from 'react-intl'
 import classNames from 'classnames'
 
-import Button from '../../components/button'
+import Button from 'components/button'
 import FormField from '../form-field'
 
-import { submitSearch } from '../../containers/header/actions'
+import { submitSearch } from 'containers/header/actions'
 
 const SearchBar = ({ intl, className, handleSubmit, submitSearch }) => {
     const classes = classNames('c-search-banner u-flexbox', className)

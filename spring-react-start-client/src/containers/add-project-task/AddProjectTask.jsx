@@ -4,12 +4,12 @@ import { reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { createPropsSelector } from 'reselect-immutable-helpers'
 import { Link } from 'react-router-dom'
-import template from '../../template'
+import template from 'template'
 
-import { ADD_PROJECT_FORM_TASK } from '../../store/form/constants'
+import { ADD_PROJECT_FORM_TASK } from 'store/form/constants'
 
-import Button from '../../components/button'
-import FormField from '../../components/form-field'
+import Button from 'components/button'
+import FormField from 'components/form-field'
 
 import { addProjectTask, setCurrentTask } from './actions'
 import { getCurrentTask } from './selectors'

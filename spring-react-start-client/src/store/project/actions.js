@@ -2,7 +2,7 @@ import axios from 'axios'
 import { createAction } from 'redux-actions'
 
 import { getProjectsList } from './selectors'
-import { getCurrentTaskList } from '../../containers/project-board/selectors'
+import { getCurrentTaskList } from 'containers/project-board/selectors'
 
 export const receiveProjects = createAction('Receive Projects List')
 export const receiveProject = createAction('Receive Project Data')

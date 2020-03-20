@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { createAction } from 'redux-actions'
 
-import { isUserLoggedIn } from '../../store/user/selectors'
+import { isUserLoggedIn } from 'store/user/selectors'
 
-import { getProjectTasksById } from '../../store/project/actions'
+import { getProjectTasksById } from 'store/project/actions'
 
 export const setCurrentTaskList = createAction('Receive Current Task List')
 export const receiveErrorMessage = createAction('Receive Error Message')
