@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createPropsSelector } from 'reselect-immutable-helpers'
 import PropTypes from 'prop-types'
-import template from '../../template'
+import template from 'template'
 
 import ProjectItem from './partials/ProjectItem'
 import CreateProjectButton from './partials/CreateProjectButton'
 
-import { getProjectsList } from '../../store/project/selectors'
+import { getProjectsList } from 'store/project/selectors'
 
 class Dashboard extends Component {
     render() {

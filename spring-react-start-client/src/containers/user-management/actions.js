@@ -2,8 +2,8 @@ import isEmail from 'validator/lib/isEmail'
 import axios from 'axios'
 import { SubmissionError } from 'redux-form'
 
-import { setJWTToken } from '../../utils/request-utils'
-import { isUserLoggedIn } from '../../store/user/selectors'
+import { setJWTToken } from 'utils/request-utils'
+import { isUserLoggedIn } from 'store/user/selectors'
 
 const validateForm = (formValues, isRegister) => {
     const errors = {}

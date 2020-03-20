@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { createPropsSelector } from 'reselect-immutable-helpers'
-import template from '../../template'
+import template from 'template'
 
-import { ADD_PROJECT_FORM } from '../../store/form/constants'
+import { ADD_PROJECT_FORM } from 'store/form/constants'
 
-import Button from '../../components/button'
-import FormField from '../../components/form-field'
+import Button from 'components/button'
+import FormField from 'components/form-field'
 
 import { createProject, setCurrentProject } from './actions'
 import { getCurrentProject } from './selectors'

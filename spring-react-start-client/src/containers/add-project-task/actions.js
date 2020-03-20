@@ -2,9 +2,9 @@ import axios from 'axios'
 import { createAction } from 'redux-actions'
 import { SubmissionError } from 'redux-form'
 
-import { isUserLoggedIn } from '../../store/user/selectors'
+import { isUserLoggedIn } from 'store/user/selectors'
 
-import { getProjectTask } from '../../store/project/actions'
+import { getProjectTask } from 'store/project/actions'
 
 export const setCurrentTask = createAction('Receive Current Task')
 

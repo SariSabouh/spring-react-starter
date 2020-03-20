@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import { createPropsSelector } from 'reselect-immutable-helpers'
 
 import { Link } from 'react-router-dom'
-import Button from '../../components/button'
+import Button from 'components/button'
 
-import { getUsername, isUserLoggedIn } from '../../store/user/selectors'
+import { getUsername, isUserLoggedIn } from 'store/user/selectors'
 import { logout } from '../user-management/actions'
 
 class Header extends Component {

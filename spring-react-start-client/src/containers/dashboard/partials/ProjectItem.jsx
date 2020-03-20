@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { Link } from 'react-router-dom'
-import Button from '../../../components/button'
+import Button from 'components/button'
 
 import { deleteProject } from '../actions'
 

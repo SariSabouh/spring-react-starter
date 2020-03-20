@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { getProjects } from '../../store/project/actions'
+import { getProjects } from 'store/project/actions'
 
-import { isUserLoggedIn } from '../../store/user/selectors'
+import { isUserLoggedIn } from 'store/user/selectors'
 
 export const initDashboard = ({ history }) => (dispatch, getStore) => {
     if (!isUserLoggedIn(getStore())) {

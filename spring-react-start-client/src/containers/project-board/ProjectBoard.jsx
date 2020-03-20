@@ -4,7 +4,7 @@ import { createPropsSelector } from 'reselect-immutable-helpers'
 import PropTypes from 'prop-types'
 
 import { Link } from 'react-router-dom'
-import template from '../../template'
+import template from 'template'
 import Backlog from './partials/Backlog'
 import { getCurrentTaskList, getProjectNotFoundError } from './selectors'
 import { setCurrentTaskList } from './actions'
